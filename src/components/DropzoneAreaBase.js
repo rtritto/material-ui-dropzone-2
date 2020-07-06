@@ -272,7 +272,7 @@ class DropzoneAreaBase extends React.PureComponent {
                         >
                             <input {...getInputProps(inputProps)} />
 
-                            <Grid container className={classes.textContainer} direction="column" justifyContent="center" alignItems="center">
+                            <Grid container className={classes.textContainer} direction="column" justify="center" alignItems="center">
                                 <Typography
                                     variant="h5"
                                     component="p"
