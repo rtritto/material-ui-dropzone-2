@@ -40,17 +40,17 @@ const useStyles = makeStyles(({spacing, palette, shape}) => ({
     },
     active: {
         animation: '$progress 2s linear infinite !important',
-        backgroundImage: `repeating-linear-gradient(-45deg, 
-            ${palette.background.paper}, 
-            ${palette.background.paper} 25px, 
-            ${palette.divider} 25px, 
+        backgroundImage: `repeating-linear-gradient(-45deg,
+            ${palette.background.paper},
+            ${palette.background.paper} 25px,
+            ${palette.divider} 25px,
             ${palette.divider} 50px)`,
         backgroundSize: '150% 100%',
         border: 'solid',
         borderColor: palette.primary.light,
     },
     invalid: {
-        backgroundImage: `repeating-linear-gradient(-45deg, 
+        backgroundImage: `repeating-linear-gradient(-45deg,
             ${palette.error.light},
             ${palette.error.light} 25px,
             ${palette.error.dark} 25px,
@@ -132,6 +132,7 @@ const DropzoneAreaBase = ({
     dropzoneText,
     getCols,
     getPreviewIcon,
+    Icon,
     inputProps,
     maxFileSize,
     previewChipProps,
@@ -249,7 +250,11 @@ const DropzoneAreaBase = ({
                             >
                                 {dropzoneText}
                             </Typography>
-                            <CloudUploadIcon className={classes.icon} />
+                            {Icon ? (
+                                <Icon className={classes.icon} />
+                            ) : (
+                                <CloudUploadIcon className={classes.icon} />
+                            )}
                         </Grid>
 
                         {someFiles && previewType === 'inside' &&
