@@ -2,44 +2,100 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _extends = _interopDefault(require('@babel/runtime/helpers/extends'));
-var _objectWithoutProperties = _interopDefault(require('@babel/runtime/helpers/objectWithoutProperties'));
-var PropTypes = _interopDefault(require('prop-types'));
+var _extends = require('@babel/runtime/helpers/extends');
+var _objectWithoutProperties = require('@babel/runtime/helpers/objectWithoutProperties');
+var PropTypes = require('prop-types');
 var React = require('react');
-var _defineProperty = _interopDefault(require('@babel/runtime/helpers/defineProperty'));
-var _asyncToGenerator = _interopDefault(require('@babel/runtime/helpers/asyncToGenerator'));
-var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
-var Snackbar = _interopDefault(require('@material-ui/core/Snackbar'));
-var Typography = _interopDefault(require('@material-ui/core/Typography'));
-var Grid$1 = _interopDefault(require('@material-ui/core/Grid'));
-var AttachFileIcon = _interopDefault(require('@material-ui/icons/AttachFile'));
-var CloudUploadIcon = _interopDefault(require('@material-ui/icons/CloudUpload'));
-var clsx = _interopDefault(require('clsx'));
-var Dropzone = _interopDefault(require('react-dropzone'));
-var makeStyles = _interopDefault(require('@material-ui/core/styles/makeStyles'));
-var Chip = _interopDefault(require('@material-ui/core/Chip'));
-var GridList = _interopDefault(require('@material-ui/core/GridList'));
-var GridListTile = _interopDefault(require('@material-ui/core/GridListTile'));
-var GridListTileBar = _interopDefault(require('@material-ui/core/GridListTileBar'));
-var IconButton = _interopDefault(require('@material-ui/core/IconButton'));
+var _defineProperty = require('@babel/runtime/helpers/defineProperty');
+var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
+var _regeneratorRuntime = require('@babel/runtime/regenerator');
+var Snackbar = require('@material-ui/core/Snackbar');
+var Typography = require('@material-ui/core/Typography');
+var Grid$1 = require('@material-ui/core/Grid');
+var AttachFileIcon = require('@material-ui/icons/AttachFile');
+var CloudUploadIcon = require('@material-ui/icons/CloudUpload');
+var clsx = require('clsx');
+var Dropzone = require('react-dropzone');
+var makeStyles = require('@material-ui/core/styles/makeStyles');
+var Chip = require('@material-ui/core/Chip');
+var GridList = require('@material-ui/core/GridList');
+var GridListTile = require('@material-ui/core/GridListTile');
+var GridListTileBar = require('@material-ui/core/GridListTileBar');
+var IconButton = require('@material-ui/core/IconButton');
 var styles = require('@material-ui/core/styles');
-var DeleteIcon = _interopDefault(require('@material-ui/icons/Delete'));
-var _slicedToArray = _interopDefault(require('@babel/runtime/helpers/slicedToArray'));
-var _toConsumableArray = _interopDefault(require('@babel/runtime/helpers/toConsumableArray'));
-var useMediaQuery = _interopDefault(require('@material-ui/core/useMediaQuery'));
-var SnackbarContent = _interopDefault(require('@material-ui/core/SnackbarContent'));
-var CheckCircleIcon = _interopDefault(require('@material-ui/icons/CheckCircle'));
-var CloseIcon = _interopDefault(require('@material-ui/icons/Close'));
-var ErrorIcon = _interopDefault(require('@material-ui/icons/Error'));
-var InfoIcon = _interopDefault(require('@material-ui/icons/Info'));
-var WarningIcon = _interopDefault(require('@material-ui/icons/Warning'));
-var Button = _interopDefault(require('@material-ui/core/Button'));
-var Dialog = _interopDefault(require('@material-ui/core/Dialog'));
-var DialogActions = _interopDefault(require('@material-ui/core/DialogActions'));
-var DialogContent = _interopDefault(require('@material-ui/core/DialogContent'));
-var DialogTitle = _interopDefault(require('@material-ui/core/DialogTitle'));
+var DeleteIcon = require('@material-ui/icons/Delete');
+var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
+var _toConsumableArray = require('@babel/runtime/helpers/toConsumableArray');
+var useMediaQuery = require('@material-ui/core/useMediaQuery');
+var SnackbarContent = require('@material-ui/core/SnackbarContent');
+var CheckCircleIcon = require('@material-ui/icons/CheckCircle');
+var CloseIcon = require('@material-ui/icons/Close');
+var ErrorIcon = require('@material-ui/icons/Error');
+var InfoIcon = require('@material-ui/icons/Info');
+var WarningIcon = require('@material-ui/icons/Warning');
+var Button = require('@material-ui/core/Button');
+var Dialog = require('@material-ui/core/Dialog');
+var DialogActions = require('@material-ui/core/DialogActions');
+var DialogContent = require('@material-ui/core/DialogContent');
+var DialogTitle = require('@material-ui/core/DialogTitle');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+        Object.keys(e).forEach(function (k) {
+            if (k !== 'default') {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function () {
+                        return e[k];
+                    }
+                });
+            }
+        });
+    }
+    n['default'] = e;
+    return Object.freeze(n);
+}
+
+var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
+var _objectWithoutProperties__default = /*#__PURE__*/_interopDefaultLegacy(_objectWithoutProperties);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var _defineProperty__default = /*#__PURE__*/_interopDefaultLegacy(_defineProperty);
+var _asyncToGenerator__default = /*#__PURE__*/_interopDefaultLegacy(_asyncToGenerator);
+var _regeneratorRuntime__default = /*#__PURE__*/_interopDefaultLegacy(_regeneratorRuntime);
+var Snackbar__default = /*#__PURE__*/_interopDefaultLegacy(Snackbar);
+var Typography__default = /*#__PURE__*/_interopDefaultLegacy(Typography);
+var Grid__default = /*#__PURE__*/_interopDefaultLegacy(Grid$1);
+var AttachFileIcon__default = /*#__PURE__*/_interopDefaultLegacy(AttachFileIcon);
+var CloudUploadIcon__default = /*#__PURE__*/_interopDefaultLegacy(CloudUploadIcon);
+var clsx__default = /*#__PURE__*/_interopDefaultLegacy(clsx);
+var Dropzone__default = /*#__PURE__*/_interopDefaultLegacy(Dropzone);
+var makeStyles__default = /*#__PURE__*/_interopDefaultLegacy(makeStyles);
+var Chip__default = /*#__PURE__*/_interopDefaultLegacy(Chip);
+var GridList__default = /*#__PURE__*/_interopDefaultLegacy(GridList);
+var GridListTile__default = /*#__PURE__*/_interopDefaultLegacy(GridListTile);
+var GridListTileBar__default = /*#__PURE__*/_interopDefaultLegacy(GridListTileBar);
+var IconButton__default = /*#__PURE__*/_interopDefaultLegacy(IconButton);
+var DeleteIcon__default = /*#__PURE__*/_interopDefaultLegacy(DeleteIcon);
+var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
+var _toConsumableArray__default = /*#__PURE__*/_interopDefaultLegacy(_toConsumableArray);
+var useMediaQuery__default = /*#__PURE__*/_interopDefaultLegacy(useMediaQuery);
+var SnackbarContent__default = /*#__PURE__*/_interopDefaultLegacy(SnackbarContent);
+var CheckCircleIcon__default = /*#__PURE__*/_interopDefaultLegacy(CheckCircleIcon);
+var CloseIcon__default = /*#__PURE__*/_interopDefaultLegacy(CloseIcon);
+var ErrorIcon__default = /*#__PURE__*/_interopDefaultLegacy(ErrorIcon);
+var InfoIcon__default = /*#__PURE__*/_interopDefaultLegacy(InfoIcon);
+var WarningIcon__default = /*#__PURE__*/_interopDefaultLegacy(WarningIcon);
+var Button__default = /*#__PURE__*/_interopDefaultLegacy(Button);
+var Dialog__default = /*#__PURE__*/_interopDefaultLegacy(Dialog);
+var DialogActions__default = /*#__PURE__*/_interopDefaultLegacy(DialogActions);
+var DialogContent__default = /*#__PURE__*/_interopDefaultLegacy(DialogContent);
+var DialogTitle__default = /*#__PURE__*/_interopDefaultLegacy(DialogTitle);
 
 function isImage(file) {
   if (file.type.split('/')[0] === 'image') {
@@ -64,9 +120,9 @@ function createFileFromUrl(_x) {
 }
 
 function _createFileFromUrl() {
-  _createFileFromUrl = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(url) {
+  _createFileFromUrl = _asyncToGenerator__default['default']( /*#__PURE__*/_regeneratorRuntime__default['default'].mark(function _callee(url) {
     var response, data, metadata, filename;
-    return _regeneratorRuntime.wrap(function _callee$(_context) {
+    return _regeneratorRuntime__default['default'].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -123,10 +179,10 @@ function readFile(file) {
 var useWidth = function useWidth() {
   var theme = styles.useTheme();
 
-  var keys = _toConsumableArray(theme.breakpoints.keys).reverse();
+  var keys = _toConsumableArray__default['default'](theme.breakpoints.keys).reverse();
 
   return keys.reduce(function (output, key) {
-    var matches = useMediaQuery(theme.breakpoints.up(key));
+    var matches = useMediaQuery__default['default'](theme.breakpoints.up(key));
     return !output && matches ? key : output;
   }, null) || 'xs';
 };
@@ -139,7 +195,7 @@ var useWidth = function useWidth() {
 
 var useColumns = function useColumns(getCols, filesLimit, numberOfFileObjects) {
   var _useState = React.useState(1),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray__default['default'](_useState, 2),
       numberOfColumns = _useState2[0],
       setCols = _useState2[1];
 
@@ -152,7 +208,7 @@ var useColumns = function useColumns(getCols, filesLimit, numberOfFileObjects) {
 };
 
 var _DeleteIcon;
-var useStyles = styles.makeStyles(function (_ref) {
+var useStyles$2 = styles.makeStyles(function (_ref) {
   var spacing = _ref.spacing;
   return {
     root: {
@@ -195,25 +251,25 @@ var PreviewList = function PreviewList(_ref2) {
       previewGridProps = _ref2.previewGridProps,
       previewType = _ref2.previewType,
       getPreviewIcon = _ref2.getPreviewIcon;
-  var classes = useStyles();
+  var classes = useStyles$2();
   var cols = useColumns(getCols, filesLimit, fileObjects.length);
   var previewInside = previewType === 'inside';
 
   if (useChipsForPreview) {
-    return /*#__PURE__*/React.createElement(Grid, _extends({
+    return /*#__PURE__*/React__namespace.createElement(Grid, _extends__default['default']({
       spacing: 1,
       direction: "row"
     }, previewGridProps.container, {
       container: true,
-      className: clsx(classes.root, previewGridClasses.container)
+      className: clsx__default['default'](classes.root, previewGridClasses.container)
     }), fileObjects.map(function (fileObject, i) {
       var _fileObject$file$name, _fileObject$file;
 
-      return /*#__PURE__*/React.createElement(Grid, _extends({}, previewGridProps.item, {
+      return /*#__PURE__*/React__namespace.createElement(Grid, _extends__default['default']({}, previewGridProps.item, {
         item: true,
         key: "".concat((_fileObject$file$name = (_fileObject$file = fileObject.file) === null || _fileObject$file === void 0 ? void 0 : _fileObject$file.name) !== null && _fileObject$file$name !== void 0 ? _fileObject$file$name : 'file', "-").concat(i),
         className: classes.imageContainer
-      }), /*#__PURE__*/React.createElement(Chip, _extends({
+      }), /*#__PURE__*/React__namespace.createElement(Chip__default['default'], _extends__default['default']({
         variant: "outlined"
       }, previewChipProps, {
         label: fileObject.file.name,
@@ -222,48 +278,48 @@ var PreviewList = function PreviewList(_ref2) {
     }));
   }
 
-  return /*#__PURE__*/React.createElement(GridList, _extends({
+  return /*#__PURE__*/React__namespace.createElement(GridList__default['default'], _extends__default['default']({
     cols: cols,
-    className: clsx(previewGridClasses.container, previewInside && classes.root)
+    className: clsx__default['default'](previewGridClasses.container, previewInside && classes.root)
   }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridList), fileObjects.map(function (fileObject, i) {
     var _fileObject$file2, _fileObject$file$name2, _fileObject$file3, _previewGridProps$gri;
 
     var fileTitle = showFileNames && ((_fileObject$file2 = fileObject.file) === null || _fileObject$file2 === void 0 ? void 0 : _fileObject$file2.name);
     var isImage$1 = isImage(fileObject.file);
-    return /*#__PURE__*/React.createElement(GridListTile, _extends({
+    return /*#__PURE__*/React__namespace.createElement(GridListTile__default['default'], _extends__default['default']({
       key: "".concat((_fileObject$file$name2 = (_fileObject$file3 = fileObject.file) === null || _fileObject$file3 === void 0 ? void 0 : _fileObject$file3.name) !== null && _fileObject$file$name2 !== void 0 ? _fileObject$file$name2 : 'file', "-").concat(i),
-      className: clsx(previewGridClasses.gridListTile, !isImage$1 && classes.iconWrapper)
-    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitle), getPreviewIcon(fileObject, classes, isImage$1, (previewGridProps === null || previewGridProps === void 0 ? void 0 : (_previewGridProps$gri = previewGridProps.gridListTitleBar) === null || _previewGridProps$gri === void 0 ? void 0 : _previewGridProps$gri.titlePosition) === 'top'), /*#__PURE__*/React.createElement(GridListTileBar, _extends({
+      className: clsx__default['default'](previewGridClasses.gridListTile, !isImage$1 && classes.iconWrapper)
+    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitle), getPreviewIcon(fileObject, classes, isImage$1, (previewGridProps === null || previewGridProps === void 0 ? void 0 : (_previewGridProps$gri = previewGridProps.gridListTitleBar) === null || _previewGridProps$gri === void 0 ? void 0 : _previewGridProps$gri.titlePosition) === 'top'), /*#__PURE__*/React__namespace.createElement(GridListTileBar__default['default'], _extends__default['default']({
       title: fileTitle,
-      actionIcon: /*#__PURE__*/React.createElement(IconButton, {
+      actionIcon: /*#__PURE__*/React__namespace.createElement(IconButton__default['default'], {
         onClick: handleRemove(i),
         "aria-label": 'Delete',
-        className: clsx(previewGridClasses.removeIconButton, classes.icon)
-      }, _DeleteIcon || (_DeleteIcon = /*#__PURE__*/React.createElement(DeleteIcon, null)))
+        className: clsx__default['default'](previewGridClasses.removeIconButton, classes.icon)
+      }, _DeleteIcon || (_DeleteIcon = /*#__PURE__*/React__namespace.createElement(DeleteIcon__default['default'], null)))
     }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitleBar)));
   }));
 };
 
 process.env.NODE_ENV !== "production" ? PreviewList.propTypes = {
-  fileObjects: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filesLimit: PropTypes.number.isRequired,
-  getCols: PropTypes.func.isRequired,
-  getPreviewIcon: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
-  previewChipProps: PropTypes.object,
-  previewGridClasses: PropTypes.object,
-  previewGridProps: PropTypes.object,
-  previewType: PropTypes.string.isRequired,
-  showFileNames: PropTypes.bool,
-  useChipsForPreview: PropTypes.bool
+  fileObjects: PropTypes__default['default'].arrayOf(PropTypes__default['default'].object).isRequired,
+  filesLimit: PropTypes__default['default'].number.isRequired,
+  getCols: PropTypes__default['default'].func.isRequired,
+  getPreviewIcon: PropTypes__default['default'].func.isRequired,
+  handleRemove: PropTypes__default['default'].func.isRequired,
+  previewChipProps: PropTypes__default['default'].object,
+  previewGridClasses: PropTypes__default['default'].object,
+  previewGridProps: PropTypes__default['default'].object,
+  previewType: PropTypes__default['default'].string.isRequired,
+  showFileNames: PropTypes__default['default'].bool,
+  useChipsForPreview: PropTypes__default['default'].bool
 } : void 0;
 
-var _excluded = ["className", "message", "onClose", "variant"];
+var _excluded$3 = ["className", "message", "onClose", "variant"];
 var variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon
+  success: CheckCircleIcon__default['default'],
+  warning: WarningIcon__default['default'],
+  error: ErrorIcon__default['default'],
+  info: InfoIcon__default['default']
 };
 var useStyles$1 = styles.makeStyles(function (theme) {
   return {
@@ -301,37 +357,36 @@ function SnackbarContentWrapper(_ref) {
       message = _ref.message,
       onClose = _ref.onClose,
       variant = _ref.variant,
-      other = _objectWithoutProperties(_ref, _excluded);
+      other = _objectWithoutProperties__default['default'](_ref, _excluded$3);
 
   var classes = useStyles$1();
   var Icon = variantIcon[variant];
-  return /*#__PURE__*/React.createElement(SnackbarContent, _extends({
-    className: clsx(classes["".concat(variant, "Alert")], className),
+  return /*#__PURE__*/React__namespace.createElement(SnackbarContent__default['default'], _extends__default['default']({
+    className: clsx__default['default'](classes["".concat(variant, "Alert")], className),
     "aria-describedby": "client-snackbar",
-    message: /*#__PURE__*/React.createElement("span", {
+    message: /*#__PURE__*/React__namespace.createElement("span", {
       id: "client-snackbar",
       className: classes.message
-    }, /*#__PURE__*/React.createElement(Icon, {
+    }, /*#__PURE__*/React__namespace.createElement(Icon, {
       className: classes.icon
     }), message),
-    action: [/*#__PURE__*/React.createElement(IconButton, {
+    action: [/*#__PURE__*/React__namespace.createElement(IconButton__default['default'], {
       key: "close",
       "aria-label": "Close",
       color: "inherit",
       className: classes.closeButton,
       onClick: onClose
-    }, /*#__PURE__*/React.createElement(CloseIcon, {
+    }, /*#__PURE__*/React__namespace.createElement(CloseIcon__default['default'], {
       className: classes.icon
     }))]
   }, other));
 }
 
 process.env.NODE_ENV !== "production" ? SnackbarContentWrapper.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  message: PropTypes.node,
-  onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired
+  className: PropTypes__default['default'].string,
+  message: PropTypes__default['default'].node,
+  onClose: PropTypes__default['default'].func,
+  variant: PropTypes__default['default'].oneOf(['success', 'warning', 'error', 'info']).isRequired
 } : void 0;
 
 /**
@@ -344,7 +399,7 @@ var useSnackbar = function useSnackbar(onAlert) {
     message: '',
     variant: 'success'
   }),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray__default['default'](_useState, 2),
       state = _useState2[0],
       setState = _useState2[1];
 
@@ -361,7 +416,7 @@ var useSnackbar = function useSnackbar(onAlert) {
   }, [onAlert]);
   var handleCloseSnackbar = React.useCallback(function () {
     setState(function (prev) {
-      return _extends({}, prev, {
+      return _extends__default['default']({}, prev, {
         open: false
       });
     });
@@ -375,7 +430,7 @@ var useSnackbar = function useSnackbar(onAlert) {
   };
 };
 
-var useStyles$2 = makeStyles(function (_ref) {
+var useStyles = makeStyles__default['default'](function (_ref) {
   var spacing = _ref.spacing,
       palette = _ref.palette,
       shape = _ref.shape;
@@ -405,13 +460,13 @@ var useStyles$2 = makeStyles(function (_ref) {
     },
     active: {
       animation: '$progress 2s linear infinite !important',
-      backgroundImage: "repeating-linear-gradient(-45deg, \n            ".concat(palette.background.paper, ", \n            ").concat(palette.background.paper, " 25px, \n            ").concat(palette.divider, " 25px, \n            ").concat(palette.divider, " 50px)"),
+      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.background.paper, ",\n            ").concat(palette.background.paper, " 25px,\n            ").concat(palette.divider, " 25px,\n            ").concat(palette.divider, " 50px)"),
       backgroundSize: '150% 100%',
       border: 'solid',
       borderColor: palette.primary.light
     },
     invalid: {
-      backgroundImage: "repeating-linear-gradient(-45deg, \n            ".concat(palette.error.light, ",\n            ").concat(palette.error.light, " 25px,\n            ").concat(palette.error.dark, " 25px,\n            ").concat(palette.error.dark, " 50px)"),
+      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.error.light, ",\n            ").concat(palette.error.light, " 25px,\n            ").concat(palette.error.dark, " 25px,\n            ").concat(palette.error.dark, " 50px)"),
       borderColor: palette.error.main
     },
     textContainer: {
@@ -465,19 +520,19 @@ var defaultSnackbarAnchorOrigin = {
 
 var defaultGetPreviewIcon = function defaultGetPreviewIcon(fileObject, classes, isImage, titleBarTop) {
   if (isImage) {
-    return /*#__PURE__*/React.createElement("img", {
+    return /*#__PURE__*/React__namespace.createElement("img", {
       className: classes.image,
       role: "presentation",
       src: fileObject.data
     });
   }
 
-  return /*#__PURE__*/React.createElement(Grid$1, {
+  return /*#__PURE__*/React__namespace.createElement(Grid__default['default'], {
     container: true,
     className: classes.iconWrapper,
     justify: "center"
-  }, /*#__PURE__*/React.createElement(AttachFileIcon, {
-    className: clsx(classes.fileIcon, titleBarTop && classes.fileIconBottom)
+  }, /*#__PURE__*/React__namespace.createElement(AttachFileIcon__default['default'], {
+    className: clsx__default['default'](classes.fileIcon, titleBarTop && classes.fileIconBottom)
   }));
 };
 /**
@@ -508,6 +563,7 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
       dropzoneText = _ref2.dropzoneText,
       getCols = _ref2.getCols,
       getPreviewIcon = _ref2.getPreviewIcon,
+      Icon = _ref2.Icon,
       inputProps = _ref2.inputProps,
       maxFileSize = _ref2.maxFileSize,
       previewChipProps = _ref2.previewChipProps,
@@ -518,7 +574,7 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
       showAlerts = _ref2.showAlerts,
       showFileNames = _ref2.showFileNames,
       useChipsForPreview = _ref2.useChipsForPreview;
-  var classes = useStyles$2();
+  var classes = useStyles();
 
   var _useSnackbar = useSnackbar(onAlert),
       handleCloseSnackbar = _useSnackbar.handleCloseSnackbar,
@@ -528,9 +584,9 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
       snackbarVariant = _useSnackbar.snackbarVariant;
 
   var handleDropAccepted = React.useCallback( /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(acceptedFiles, evt) {
+    var _ref3 = _asyncToGenerator__default['default']( /*#__PURE__*/_regeneratorRuntime__default['default'].mark(function _callee2(acceptedFiles, evt) {
       var message, fileObjs, successMessage;
-      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return _regeneratorRuntime__default['default'].wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
@@ -552,9 +608,9 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
 
               _context2.next = 7;
               return Promise.all(acceptedFiles.map( /*#__PURE__*/function () {
-                var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(file) {
+                var _ref4 = _asyncToGenerator__default['default']( /*#__PURE__*/_regeneratorRuntime__default['default'].mark(function _callee(file) {
                   var data;
-                  return _regeneratorRuntime.wrap(function _callee$(_context) {
+                  return _regeneratorRuntime__default['default'].wrap(function _callee$(_context) {
                     while (1) {
                       switch (_context.prev = _context.next) {
                         case 0:
@@ -640,7 +696,7 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
   var acceptFiles = acceptedFiles === null || acceptedFiles === void 0 ? void 0 : acceptedFiles.join(',');
   var isMultiple = filesLimit > 1;
   var someFiles = fileObjects.length > 0;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Dropzone, _extends({}, dropzoneProps, {
+  return /*#__PURE__*/React__namespace.createElement(React__namespace.Fragment, null, /*#__PURE__*/React__namespace.createElement(Dropzone__default['default'], _extends__default['default']({}, dropzoneProps, {
     accept: acceptFiles,
     onDropAccepted: handleDropAccepted,
     onDropRejected: handleDropRejected,
@@ -651,21 +707,23 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
         getInputProps = _ref5.getInputProps,
         isDragActive = _ref5.isDragActive,
         isDragReject = _ref5.isDragReject;
-    return /*#__PURE__*/React.createElement("div", _extends({}, getRootProps(), {
-      className: clsx(classes.root, dropzoneClass, isDragActive && classes.active, !disableRejectionFeedback && isDragReject && classes.invalid)
-    }), /*#__PURE__*/React.createElement("input", _extends({}, inputProps, getInputProps())), /*#__PURE__*/React.createElement(Grid$1, {
+    return /*#__PURE__*/React__namespace.createElement("div", _extends__default['default']({}, getRootProps(), {
+      className: clsx__default['default'](classes.root, dropzoneClass, isDragActive && classes.active, !disableRejectionFeedback && isDragReject && classes.invalid)
+    }), /*#__PURE__*/React__namespace.createElement("input", getInputProps(inputProps)), /*#__PURE__*/React__namespace.createElement(Grid__default['default'], {
       container: true,
       className: classes.textContainer,
       direction: "column",
       justify: "center",
       alignItems: "center"
-    }, /*#__PURE__*/React.createElement(Typography, {
+    }, /*#__PURE__*/React__namespace.createElement(Typography__default['default'], {
       variant: "h5",
       component: "p",
-      className: clsx(classes.text, dropzoneParagraphClass)
-    }, dropzoneText), /*#__PURE__*/React.createElement(CloudUploadIcon, {
+      className: clsx__default['default'](classes.text, dropzoneParagraphClass)
+    }, dropzoneText), Icon ? /*#__PURE__*/React__namespace.createElement(Icon, {
       className: classes.icon
-    })), someFiles && previewType === 'inside' && (_PreviewList || (_PreviewList = /*#__PURE__*/React.createElement(PreviewList, {
+    }) : /*#__PURE__*/React__namespace.createElement(CloudUploadIcon__default['default'], {
+      className: classes.icon
+    })), someFiles && previewType === 'inside' && (_PreviewList || (_PreviewList = /*#__PURE__*/React__namespace.createElement(PreviewList, {
       fileObjects: fileObjects,
       filesLimit: filesLimit,
       getCols: getCols,
@@ -678,10 +736,10 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
       previewGridProps: previewGridProps,
       previewType: previewType
     }))));
-  }), someFiles && previewType === 'below' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Typography, {
+  }), someFiles && previewType === 'below' && /*#__PURE__*/React__namespace.createElement(React.Fragment, null, /*#__PURE__*/React__namespace.createElement(Typography__default['default'], {
     variant: "subtitle1",
     component: "span"
-  }, previewText), /*#__PURE__*/React.createElement(PreviewList, {
+  }, previewText), /*#__PURE__*/React__namespace.createElement(PreviewList, {
     fileObjects: fileObjects,
     filesLimit: filesLimit,
     getCols: getCols,
@@ -693,13 +751,13 @@ var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
     previewGridClasses: previewGridClasses,
     previewGridProps: previewGridProps,
     previewType: previewType
-  })), (typeof showAlerts === 'boolean' && showAlerts || Array.isArray(showAlerts) && showAlerts.includes(snackbarVariant)) && /*#__PURE__*/React.createElement(Snackbar, _extends({
+  })), (typeof showAlerts === 'boolean' && showAlerts || Array.isArray(showAlerts) && showAlerts.includes(snackbarVariant)) && /*#__PURE__*/React__namespace.createElement(Snackbar__default['default'], _extends__default['default']({
     anchorOrigin: defaultSnackbarAnchorOrigin,
     autoHideDuration: 6000
   }, alertSnackbarProps, {
     open: snackbarOpen,
     onClose: handleCloseSnackbar
-  }), /*#__PURE__*/React.createElement(SnackbarContentWrapper, {
+  }), /*#__PURE__*/React__namespace.createElement(SnackbarContentWrapper, {
     onClose: handleCloseSnackbar,
     variant: snackbarVariant,
     message: snackbarMessage
@@ -753,58 +811,58 @@ DropzoneAreaBase.defaultProps = {
     return message;
   }
 };
-var FileObjectShape = PropTypes.shape({
-  file: PropTypes.object,
-  data: PropTypes.any
+var FileObjectShape = PropTypes__default['default'].shape({
+  file: PropTypes__default['default'].object,
+  data: PropTypes__default['default'].any
 });
-process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProperty({
+process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProperty__default['default']({
   /** A list of file types to accept.
   * @see See [here](https://react-dropzone.js.org/#section-accepting-specific-file-types) for more details.
   */
-  acceptedFiles: PropTypes.arrayOf(PropTypes.string),
+  acceptedFiles: PropTypes__default['default'].arrayOf(PropTypes__default['default'].string),
 
   /** Maximum number of files that can be loaded into the dropzone. */
-  filesLimit: PropTypes.number,
+  filesLimit: PropTypes__default['default'].number,
 
   /** Icon to be displayed inside the dropzone area. */
-  Icon: PropTypes.elementType,
+  Icon: PropTypes__default['default'].elementType,
 
   /** Currently loaded files. */
-  fileObjects: PropTypes.arrayOf(FileObjectShape),
+  fileObjects: PropTypes__default['default'].arrayOf(FileObjectShape),
 
   /** Maximum file size (in bytes) that the dropzone will accept. */
-  maxFileSize: PropTypes.number,
+  maxFileSize: PropTypes__default['default'].number,
 
   /** Text inside the dropzone. */
-  dropzoneText: PropTypes.string,
+  dropzoneText: PropTypes__default['default'].string,
 
   /** Custom CSS class name for dropzone container. */
-  dropzoneClass: PropTypes.string,
+  dropzoneClass: PropTypes__default['default'].string,
 
   /** Custom CSS class name for text inside the container. */
-  dropzoneParagraphClass: PropTypes.string,
+  dropzoneParagraphClass: PropTypes__default['default'].string,
 
   /** Disable feedback effect when dropping rejected files. */
-  disableRejectionFeedback: PropTypes.bool,
+  disableRejectionFeedback: PropTypes__default['default'].bool,
 
   /** Shows file name under the dropzone image. */
-  showFileNames: PropTypes.bool,
+  showFileNames: PropTypes__default['default'].bool,
 
   /** Shows file name under the image. */
-  useChipsForPreview: PropTypes.bool,
+  useChipsForPreview: PropTypes__default['default'].bool,
 
   /**
   * Props to pass to the Material-UI Chip components.<br/>Requires `useChipsForPreview` prop to be `true`.
   *
   * @see See [Material-UI Chip](https://material-ui.com/api/chip/#props) for available values.
   */
-  previewChipProps: PropTypes.object,
+  previewChipProps: PropTypes__default['default'].object,
 
   /**
   * Custom CSS classNames for preview Grid components.<br/>
   * Should be in the form {container: string, item: string, image: string}.
   */
-  previewGridClasses: PropTypes.object,
+  previewGridClasses: PropTypes__default['default'].object,
 
   /**
   * Props to pass to the Material-UI Grid components.<br/>
@@ -812,13 +870,13 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   *
   * @see See [Material-UI Grid](https://material-ui.com/api/grid/#props) for available GridProps values.
   */
-  previewGridProps: PropTypes.object,
+  previewGridProps: PropTypes__default['default'].object,
 
   /** The label for the file preview section. */
-  previewText: PropTypes.string,
+  previewText: PropTypes__default['default'].string,
 
   /** Determines whether previews are shown inside the dropzone area, below, or not at all. Acceptable values are 'inside', 'below', 'none'. */
-  previewType: PropTypes.oneOf(['inside', 'below', 'none']),
+  previewType: PropTypes__default['default'].oneOf(['inside', 'below', 'none']),
 
   /**
   * Shows styled Material-UI Snackbar when files are dropped, deleted or rejected.
@@ -830,28 +888,28 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   *  - showAlerts={['error', 'success', 'info']} is same as showAlerts={true}.
   *  - showAlerts={[]} is same as showAlerts={false}.
   */
-  showAlerts: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.oneOf(['error', 'success', 'info']))]),
+  showAlerts: PropTypes__default['default'].oneOfType([PropTypes__default['default'].bool, PropTypes__default['default'].arrayOf(PropTypes__default['default'].oneOf(['error', 'success', 'info']))]),
 
   /**
   * Props to pass to the Material-UI Snackbar components.<br/>Requires `showAlerts` prop to be `true`.
   *
   * @see See [Material-UI Snackbar](https://material-ui.com/api/snackbar/#props) for available values.
   */
-  alertSnackbarProps: PropTypes.object,
+  alertSnackbarProps: PropTypes__default['default'].object,
 
   /**
   * Props to pass to the Dropzone component.
   *
   * @see See [Dropzone props](https://react-dropzone.js.org/#src) for available values.
   */
-  dropzoneProps: PropTypes.object,
+  dropzoneProps: PropTypes__default['default'].object,
 
   /**
   * Attributes applied to the input element.
   *
   * @see See [MDN Input File attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Additional_attributes) for available values.
   */
-  inputProps: PropTypes.object,
+  inputProps: PropTypes__default['default'].object,
 
   /**
   * A function which determines which the number of columns to display in the preview list
@@ -862,7 +920,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {number} filesLimit The `filesLimit` prop
   * @param {number} currentNumberOfFiles The number of files in the `state.fileObjects`
   */
-  getCols: PropTypes.func,
+  getCols: PropTypes__default['default'].func,
 
   /**
   * Get alert message to display when files limit is exceed.
@@ -871,7 +929,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   *
   * @param {number} filesLimit The `filesLimit` currently set for the component.
   */
-  getFileLimitExceedMessage: PropTypes.func,
+  getFileLimitExceedMessage: PropTypes__default['default'].func,
 
   /**
   * Get alert message to display when a new file is added.
@@ -880,7 +938,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   *
   * @param {string} fileName The newly added file name.
   */
-  getFileAddedMessage: PropTypes.func,
+  getFileAddedMessage: PropTypes__default['default'].func,
 
   /**
   * Get alert message to display when a file is removed.
@@ -889,7 +947,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   *
   * @param {string} fileName The name of the removed file.
   */
-  getFileRemovedMessage: PropTypes.func,
+  getFileRemovedMessage: PropTypes__default['default'].func,
 
   /**
   * Get alert message to display when a file is rejected onDrop.
@@ -900,7 +958,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {string[]} acceptedFiles The `acceptedFiles` prop currently set for the component
   * @param {number} maxFileSize The `maxFileSize` prop currently set for the component
   */
-  getDropRejectMessage: PropTypes.func,
+  getDropRejectMessage: PropTypes__default['default'].func,
 
   /**
   * A function which determines which icon to display for a file preview.
@@ -910,14 +968,14 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {FileObject} objectFile The file which the preview will belong to
   * @param {Object} classes The classes for the file preview icon, in the default case we use the 'image' className.
   */
-  getPreviewIcon: PropTypes.func,
+  getPreviewIcon: PropTypes__default['default'].func,
 
   /**
   * Fired when new files are added to dropzone.
   *
   * @param {FileObject[]} newFiles The new files added to the dropzone.
   */
-  onAdd: PropTypes.func,
+  onAdd: PropTypes__default['default'].func,
 
   /**
   * Fired when an alert is triggered.
@@ -925,7 +983,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {string} message Alert message.
   * @param {string} variant One of "error", "info", "success".
   */
-  onAlert: PropTypes.func,
+  onAlert: PropTypes__default['default'].func,
 
   /**
   * Fired when a file is deleted from the previews panel.
@@ -933,7 +991,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {FileObject} deletedFileObject The file that was removed.
   * @param {number} index The index of the removed file object.
   */
-  onDelete: PropTypes.func,
+  onDelete: PropTypes__default['default'].func,
 
   /**
   * Fired when the user drops files into the dropzone.
@@ -941,7 +999,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {File[]} droppedFiles All the files dropped into the dropzone.
   * @param {Event} event The react-dropzone drop event.
   */
-  onDrop: PropTypes.func,
+  onDrop: PropTypes__default['default'].func,
 
   /**
   * Fired when a file is rejected because of wrong file type, size or goes beyond the filesLimit.
@@ -949,8 +1007,8 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProp
   * @param {File[]} rejectedFiles All the rejected files.
   * @param {Event} event The react-dropzone drop event.
   */
-  onDropRejected: PropTypes.func
-}, "onAlert", PropTypes.func) : void 0;
+  onDropRejected: PropTypes__default['default'].func
+}, "onAlert", PropTypes__default['default'].func) : void 0;
 
 /**
  * holds files in its state and provides some handler methods to add and remove from that state
@@ -964,7 +1022,7 @@ var useFiles = function useFiles(_ref) {
       onDelete = _ref.onDelete;
 
   var _useState = React.useState([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray__default['default'](_useState, 2),
       fileObjects = _useState2[0],
       setFileObjects = _useState2[1]; // When the fileObjects change, fire the onChange method if it's defined
 
@@ -985,37 +1043,49 @@ var useFiles = function useFiles(_ref) {
       }
     };
   }, [loadInitialFiles]);
-  var loadInitialFiles = React.useCallback( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+  var loadInitialFiles = React.useCallback( /*#__PURE__*/_asyncToGenerator__default['default']( /*#__PURE__*/_regeneratorRuntime__default['default'].mark(function _callee2() {
     var fileObjs;
-    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime__default['default'].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
             return Promise.all(initialFiles.map( /*#__PURE__*/function () {
-              var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(url) {
+              var _ref3 = _asyncToGenerator__default['default']( /*#__PURE__*/_regeneratorRuntime__default['default'].mark(function _callee(initialFile) {
                 var file, data;
-                return _regeneratorRuntime.wrap(function _callee$(_context) {
+                return _regeneratorRuntime__default['default'].wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
-                        _context.next = 2;
-                        return createFileFromUrl(url);
+                        if (!(typeof initialFile === 'string')) {
+                          _context.next = 6;
+                          break;
+                        }
 
-                      case 2:
+                        _context.next = 3;
+                        return createFileFromUrl(initialFile);
+
+                      case 3:
                         file = _context.sent;
-                        _context.next = 5;
+                        _context.next = 7;
+                        break;
+
+                      case 6:
+                        file = initialFile;
+
+                      case 7:
+                        _context.next = 9;
                         return readFile(file);
 
-                      case 5:
+                      case 9:
                         data = _context.sent;
                         return _context.abrupt("return", {
                           file: file,
                           data: data
                         });
 
-                      case 7:
+                      case 11:
                       case "end":
                         return _context.stop();
                     }
@@ -1031,7 +1101,7 @@ var useFiles = function useFiles(_ref) {
           case 3:
             fileObjs = _context2.sent;
             setFileObjects(function (prev) {
-              return [].concat(_toConsumableArray(prev), _toConsumableArray(fileObjs));
+              return [].concat(_toConsumableArray__default['default'](prev), _toConsumableArray__default['default'](fileObjs));
             });
             _context2.next = 10;
             break;
@@ -1048,33 +1118,16 @@ var useFiles = function useFiles(_ref) {
       }
     }, _callee2, null, [[0, 7]]);
   })), [initialFiles]);
-  var handleAddFiles = React.useCallback( /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(newFileObjects) {
-      return _regeneratorRuntime.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              // Update component state
-              setFileObjects(function (prev) {
-                if (filesLimit <= 1) {
-                  return [newFileObjects[0]];
-                }
+  var handleAddFiles = React.useCallback(function (newFileObjects) {
+    // Update component state
+    setFileObjects(function (prev) {
+      if (filesLimit <= 1) {
+        return [newFileObjects[0]];
+      }
 
-                return [].concat(_toConsumableArray(prev), _toConsumableArray(newFileObjects));
-              });
-
-            case 1:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function (_x2) {
-      return _ref4.apply(this, arguments);
-    };
-  }(), [filesLimit]);
+      return [].concat(_toConsumableArray__default['default'](prev), _toConsumableArray__default['default'](newFileObjects));
+    });
+  }, [filesLimit]);
   var handleDeleteFile = React.useCallback(function (removedFileObj, removedFileObjIdx) {
     event.stopPropagation(); // Calculate remaining fileObjects array
 
@@ -1102,7 +1155,7 @@ var useFiles = function useFiles(_ref) {
   };
 };
 
-var _excluded$1 = ["clearOnUnmount", "initialFiles", "onChange", "onDelete", "filesLimit"];
+var _excluded$2 = ["clearOnUnmount", "initialFiles", "onChange", "onDelete", "filesLimit"];
 /**
  * This components creates an uncontrolled Material-UI Dropzone, with previews and snackbar notifications.
  *
@@ -1117,7 +1170,7 @@ var DropzoneArea = function DropzoneArea(_ref) {
       onChange = _ref.onChange,
       onDelete = _ref.onDelete,
       filesLimit = _ref.filesLimit,
-      dropzoneAreaBaseProps = _objectWithoutProperties(_ref, _excluded$1);
+      dropzoneAreaBaseProps = _objectWithoutProperties__default['default'](_ref, _excluded$2);
 
   var _useFiles = useFiles({
     onChange: onChange,
@@ -1130,7 +1183,7 @@ var DropzoneArea = function DropzoneArea(_ref) {
       handleAddFiles = _useFiles.handleAddFiles,
       fileObjects = _useFiles.fileObjects;
 
-  return /*#__PURE__*/React.createElement(DropzoneAreaBase, _extends({}, dropzoneAreaBaseProps, {
+  return /*#__PURE__*/React__namespace.createElement(DropzoneAreaBase, _extends__default['default']({}, dropzoneAreaBaseProps, {
     fileObjects: fileObjects,
     onAdd: handleAddFiles,
     onDelete: handleDeleteFile
@@ -1142,34 +1195,34 @@ DropzoneArea.defaultProps = {
   filesLimit: 3,
   initialFiles: []
 };
-process.env.NODE_ENV !== "production" ? DropzoneArea.propTypes = _extends({}, DropzoneAreaBase.propTypes, {
+process.env.NODE_ENV !== "production" ? DropzoneArea.propTypes = _extends__default['default']({}, DropzoneAreaBase.propTypes, {
   /** Clear uploaded files when component is unmounted. */
-  clearOnUnmount: PropTypes.bool,
+  clearOnUnmount: PropTypes__default['default'].bool,
 
   /** List containing File objects or URL strings.<br/>
    * **Note:** Please take care of CORS.
   */
-  initialFiles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.any])),
+  initialFiles: PropTypes__default['default'].arrayOf(PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].any])),
 
   /** Maximum number of files that can be loaded into the dropzone. */
-  filesLimit: PropTypes.number,
+  filesLimit: PropTypes__default['default'].number,
 
   /**
    * Fired when the files inside dropzone change.
    *
    * @param {File[]} loadedFiles All the files currently loaded into the dropzone.
    */
-  onChange: PropTypes.func,
+  onChange: PropTypes__default['default'].func,
 
   /**
    * Fired when a file is deleted from the previews panel.
    *
    * @param {File} deletedFile The file that was removed.
    */
-  onDelete: PropTypes.func
+  onDelete: PropTypes__default['default'].func
 }) : void 0;
 
-var _excluded$2 = ["cancelButtonText", "dialogProps", "dialogTitle", "fullWidth", "maxWidth", "onClose", "onSave", "open", "submitButtonText"];
+var _excluded$1 = ["cancelButtonText", "dialogProps", "dialogTitle", "fullWidth", "maxWidth", "onClose", "onSave", "open", "submitButtonText"];
 /**
  * This component provides the DropzoneArea inside of a Material-UI Dialog.
  *
@@ -1186,11 +1239,11 @@ var DropzoneDialogBase = function DropzoneDialogBase(_ref) {
       onSave = _ref.onSave,
       open = _ref.open,
       submitButtonText = _ref.submitButtonText,
-      dropzoneAreaProps = _objectWithoutProperties(_ref, _excluded$2);
+      dropzoneAreaProps = _objectWithoutProperties__default['default'](_ref, _excluded$1);
 
   // Submit button state
   var submitDisabled = dropzoneAreaProps.fileObjects.length === 0;
-  return /*#__PURE__*/React.createElement(Dialog, {
+  return /*#__PURE__*/React__namespace.createElement(Dialog__default['default'], {
     cancelButtonText: cancelButtonText,
     dialogProps: dialogProps,
     dialogTitle: dialogTitle,
@@ -1200,10 +1253,10 @@ var DropzoneDialogBase = function DropzoneDialogBase(_ref) {
     open: open,
     fullWidth: fullWidth,
     fileObjects: dropzoneAreaProps.fileObjects
-  }, /*#__PURE__*/React.createElement(DialogTitle, null, dialogTitle), /*#__PURE__*/React.createElement(DialogContent, null, /*#__PURE__*/React.createElement(DropzoneAreaBase, dropzoneAreaProps)), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
+  }, /*#__PURE__*/React__namespace.createElement(DialogTitle__default['default'], null, dialogTitle), /*#__PURE__*/React__namespace.createElement(DialogContent__default['default'], null, /*#__PURE__*/React__namespace.createElement(DropzoneAreaBase, dropzoneAreaProps)), /*#__PURE__*/React__namespace.createElement(DialogActions__default['default'], null, /*#__PURE__*/React__namespace.createElement(Button__default['default'], {
     color: "primary",
     onClick: onClose
-  }, cancelButtonText), /*#__PURE__*/React.createElement(Button, {
+  }, cancelButtonText), /*#__PURE__*/React__namespace.createElement(Button__default['default'], {
     color: "primary",
     disabled: submitDisabled,
     onClick: onSave
@@ -1222,65 +1275,65 @@ DropzoneDialogBase.defaultProps = {
   showPreviewsInDropzone: false,
   showFileNamesInPreview: true
 };
-process.env.NODE_ENV !== "production" ? DropzoneDialogBase.propTypes = _extends({}, DropzoneAreaBase.propTypes, {
+process.env.NODE_ENV !== "production" ? DropzoneDialogBase.propTypes = _extends__default['default']({}, DropzoneAreaBase.propTypes, {
   /** Sets whether the dialog is open or closed. */
-  open: PropTypes.bool,
+  open: PropTypes__default['default'].bool,
 
   /** The Dialog title. */
-  dialogTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  dialogTitle: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].element]),
 
   /**
    * Props to pass to the Material-UI Dialog components.
    * @see See [Material-UI Dialog](https://material-ui.com/api/dialog/#props) for available values.
    */
-  dialogProps: PropTypes.object,
+  dialogProps: PropTypes__default['default'].object,
 
   /**
    * If `true`, the dialog stretches to `maxWidth`.<br/>
    * Notice that the dialog width grow is limited by the default margin.
    */
-  fullWidth: PropTypes.bool,
+  fullWidth: PropTypes__default['default'].bool,
 
   /**
    * Determine the max-width of the dialog. The dialog width grows with the size of the screen.<br/>
    * Set to `false` to disable `maxWidth`.
    */
-  maxWidth: PropTypes.string,
+  maxWidth: PropTypes__default['default'].string,
 
   /** Cancel button text in dialog. */
-  cancelButtonText: PropTypes.string,
+  cancelButtonText: PropTypes__default['default'].string,
 
   /** Submit button text in dialog. */
-  submitButtonText: PropTypes.string,
+  submitButtonText: PropTypes__default['default'].string,
 
   /**
    * Fired when the modal is closed.
    *
    * @param {SyntheticEvent} event The react `SyntheticEvent`
    */
-  onClose: PropTypes.func,
+  onClose: PropTypes__default['default'].func,
 
   /**
    * Fired when the user clicks the Submit button.
    *
    * @param {SyntheticEvent} event The react `SyntheticEvent`
    */
-  onSave: PropTypes.func,
+  onSave: PropTypes__default['default'].func,
 
   /**
    * Shows previews **BELOW** the dropzone.<br/>
    * **Note:** By default previews show up under in the Dialog and inside in the standalone.
    */
-  showPreviews: PropTypes.bool,
+  showPreviews: PropTypes__default['default'].bool,
 
   /** Shows preview **INSIDE** the dropzone area. */
-  showPreviewsInDropzone: PropTypes.bool,
+  showPreviewsInDropzone: PropTypes__default['default'].bool,
 
   /** Shows file name under the image. */
-  showFileNamesInPreview: PropTypes.bool
+  showFileNamesInPreview: PropTypes__default['default'].bool
 }) : void 0;
 
-var _excluded$3 = ["clearOnUnmount", "onClose", "onSave", "initialFiles", "filesLimit", "onDelete", "onChange"];
+var _excluded = ["clearOnUnmount", "onClose", "onSave", "initialFiles", "filesLimit", "onDelete", "onChange"];
 /**
  * This component provides an uncontrolled version of the DropzoneDialogBase component.
  *
@@ -1297,7 +1350,7 @@ var DropzoneDialog = function DropzoneDialog(_ref) {
       filesLimit = _ref.filesLimit,
       onDelete = _ref.onDelete,
       onChange = _ref.onChange,
-      other = _objectWithoutProperties(_ref, _excluded$3);
+      other = _objectWithoutProperties__default['default'](_ref, _excluded);
 
   var _useFiles = useFiles({
     onChange: onChange,
@@ -1329,7 +1382,7 @@ var DropzoneDialog = function DropzoneDialog(_ref) {
     }
   };
 
-  return /*#__PURE__*/React.createElement(DropzoneDialogBase, _extends({
+  return /*#__PURE__*/React__namespace.createElement(DropzoneDialogBase, _extends__default['default']({
     clearOnUnmount: clearOnUnmount,
     initialFiles: initialFiles,
     filesLimit: filesLimit,
@@ -1347,17 +1400,17 @@ DropzoneDialog.defaultProps = {
   filesLimit: 3,
   initialFiles: []
 };
-process.env.NODE_ENV !== "production" ? DropzoneDialog.propTypes = _extends({}, DropzoneDialogBase.propTypes, {
+process.env.NODE_ENV !== "production" ? DropzoneDialog.propTypes = _extends__default['default']({}, DropzoneDialogBase.propTypes, {
   /** Clear uploaded files when component is unmounted. */
-  clearOnUnmount: PropTypes.bool,
+  clearOnUnmount: PropTypes__default['default'].bool,
 
   /** Maximum number of files that can be loaded into the dropzone. */
-  filesLimit: PropTypes.number,
+  filesLimit: PropTypes__default['default'].number,
 
   /** List containing File objects or URL strings.<br/>
    * **Note:** Please take care of CORS.
   */
-  initialFiles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.any])),
+  initialFiles: PropTypes__default['default'].arrayOf(PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].any])),
 
   /**
   * Fired when the user clicks the Submit button.
@@ -1365,7 +1418,7 @@ process.env.NODE_ENV !== "production" ? DropzoneDialog.propTypes = _extends({}, 
   * @param {File[]} files All the files currently inside the Dropzone.
   * @param {SyntheticEvent} event The react `SyntheticEvent`.
   */
-  onSave: PropTypes.func
+  onSave: PropTypes__default['default'].func
 }) : void 0;
 
 exports.DropzoneArea = DropzoneArea;
