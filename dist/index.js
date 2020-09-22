@@ -25,7 +25,6 @@ var GridListTileBar = require('@material-ui/core/GridListTileBar');
 var IconButton = require('@material-ui/core/IconButton');
 var styles = require('@material-ui/core/styles');
 var DeleteIcon = require('@material-ui/icons/Delete');
-require('@material-ui/icons/Visibility');
 var matchMediaQuery = require('@material-ui/core/useMediaQuery');
 var SnackbarContent = require('@material-ui/core/SnackbarContent');
 var CheckCircleIcon = require('@material-ui/icons/CheckCircle');
