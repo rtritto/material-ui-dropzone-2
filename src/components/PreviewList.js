@@ -6,6 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PreviewIcon from '@material-ui/icons/Visibility';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -54,6 +55,7 @@ const PreviewList = ({
   previewGridProps,
   previewType,
   getPreviewIcon,
+  handlePreviewClick,
 }) => {
   const classes = useStyles();
   const cols = useColumns(getCols, filesLimit, fileObjects.length);
@@ -108,6 +110,8 @@ const PreviewList = ({
             className={clsx(previewGridClasses.gridListTile, {
               [classes.iconWrapper]: !isImage,
             })}
+            onClick={handlePreviewClick(i)}
+            onKeyDown={handlePreviewClick(i)}
             {...previewGridProps?.gridListTitle}
           >
             {getPreviewIcon(
@@ -146,6 +150,7 @@ PreviewList.propTypes = {
   getCols: PropTypes.func.isRequired,
   getPreviewIcon: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
+  handlePreviewClick: PropTypes.func.isRequired,
   previewChipProps: PropTypes.object,
   previewGridClasses: PropTypes.object,
   previewGridProps: PropTypes.object,

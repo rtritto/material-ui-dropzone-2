@@ -2,18 +2,19 @@ import _extends from '@babel/runtime/helpers/extends';
 import _objectWithoutProperties from '@babel/runtime/helpers/objectWithoutProperties';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState, useEffect, useCallback, Fragment } from 'react';
-import _defineProperty from '@babel/runtime/helpers/defineProperty';
+import { useState, useCallback, useEffect } from 'react';
+import _toConsumableArray from '@babel/runtime/helpers/toConsumableArray';
 import _asyncToGenerator from '@babel/runtime/helpers/asyncToGenerator';
+import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
+import Grid$1 from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
-import Grid$1 from '@material-ui/core/Grid';
+import makeStyles$1 from '@material-ui/core/styles/makeStyles';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import clsx from 'clsx';
 import Dropzone from 'react-dropzone';
-import makeStyles$1 from '@material-ui/core/styles/makeStyles';
 import Chip from '@material-ui/core/Chip';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -21,9 +22,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import _slicedToArray from '@babel/runtime/helpers/slicedToArray';
-import _toConsumableArray from '@babel/runtime/helpers/toConsumableArray';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import '@material-ui/icons/Visibility';
+import matchMediaQuery from '@material-ui/core/useMediaQuery';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseIcon from '@material-ui/icons/Close';
@@ -40,6 +40,8 @@ function isImage(file) {
   if (file.type.split('/')[0] === 'image') {
     return true;
   }
+
+  return false;
 }
 function convertBytesToMbsOrKbs(filesize) {
   var size = '';
@@ -111,845 +113,6 @@ function readFile(file) {
 }
 
 /**
- * Returns xs,sm,md,lg or xl depending on the screenSize
- * @see https://material-ui.com/components/use-media-query/#migrating-from-withwidth
- */
-
-var useWidth = function useWidth() {
-  var theme = useTheme();
-
-  var keys = _toConsumableArray(theme.breakpoints.keys).reverse();
-
-  return keys.reduce(function (output, key) {
-    var matches = useMediaQuery(theme.breakpoints.up(key));
-    return !output && matches ? key : output;
-  }, null) || 'xs';
-};
-
-/**
- * Calculates the number of columns to use in the preview based on a function passed in
- * numberOfColumns is a state variable which will update every time the width of the
- * screen changes
- */
-
-var useColumns = function useColumns(getCols, filesLimit, numberOfFileObjects) {
-  var _useState = useState(1),
-      _useState2 = _slicedToArray(_useState, 2),
-      numberOfColumns = _useState2[0],
-      setCols = _useState2[1];
-
-  var width = useWidth();
-  useEffect(function () {
-    var cols = getCols(width, filesLimit, numberOfFileObjects);
-    setCols(cols);
-  }, [width]);
-  return numberOfColumns;
-};
-
-var _DeleteIcon;
-var useStyles$2 = makeStyles(function (_ref) {
-  var spacing = _ref.spacing;
-  return {
-    root: {
-      alignItems: 'center',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      margin: 0,
-      backgroundColor: 'rgba(255,255,255,0.87)'
-    },
-    icon: {
-      color: 'rgba(255, 255, 255, 0.54)'
-    },
-    iconWrapper: {
-      height: '100%',
-      backgroundColor: '#f2f2f2'
-    },
-    fileIcon: {
-      flexGrow: 1,
-      height: '50%',
-      marginTop: spacing(3)
-    },
-    fileIconBottom: {
-      marginTop: spacing(9)
-    }
-  };
-}, {
-  name: 'MuiDropzonePreviewList'
-});
-
-var PreviewList = function PreviewList(_ref2) {
-  var fileObjects = _ref2.fileObjects,
-      filesLimit = _ref2.filesLimit,
-      getCols = _ref2.getCols,
-      handleRemove = _ref2.handleRemove,
-      showFileNames = _ref2.showFileNames,
-      useChipsForPreview = _ref2.useChipsForPreview,
-      previewChipProps = _ref2.previewChipProps,
-      previewGridClasses = _ref2.previewGridClasses,
-      previewGridProps = _ref2.previewGridProps,
-      previewType = _ref2.previewType,
-      getPreviewIcon = _ref2.getPreviewIcon;
-  var classes = useStyles$2();
-  var cols = useColumns(getCols, filesLimit, fileObjects.length);
-  var previewInside = previewType === 'inside';
-
-  if (useChipsForPreview) {
-    return /*#__PURE__*/React.createElement(Grid, _extends({
-      spacing: 1,
-      direction: "row"
-    }, previewGridProps.container, {
-      container: true,
-      className: clsx(classes.root, previewGridClasses.container)
-    }), fileObjects.map(function (fileObject, i) {
-      var _fileObject$file$name, _fileObject$file;
-
-      return /*#__PURE__*/React.createElement(Grid, _extends({}, previewGridProps.item, {
-        item: true,
-        key: "".concat((_fileObject$file$name = (_fileObject$file = fileObject.file) === null || _fileObject$file === void 0 ? void 0 : _fileObject$file.name) !== null && _fileObject$file$name !== void 0 ? _fileObject$file$name : 'file', "-").concat(i),
-        className: classes.imageContainer
-      }), /*#__PURE__*/React.createElement(Chip, _extends({
-        variant: "outlined"
-      }, previewChipProps, {
-        label: fileObject.file.name,
-        onDelete: handleRemove(i)
-      })));
-    }));
-  }
-
-  return /*#__PURE__*/React.createElement(GridList, _extends({
-    cols: cols,
-    className: clsx(previewGridClasses.container, previewInside && classes.root)
-  }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridList), fileObjects.map(function (fileObject, i) {
-    var _fileObject$file2, _fileObject$file$name2, _fileObject$file3, _previewGridProps$gri;
-
-    var fileTitle = showFileNames && ((_fileObject$file2 = fileObject.file) === null || _fileObject$file2 === void 0 ? void 0 : _fileObject$file2.name);
-    var isImage$1 = isImage(fileObject.file);
-    return /*#__PURE__*/React.createElement(GridListTile, _extends({
-      key: "".concat((_fileObject$file$name2 = (_fileObject$file3 = fileObject.file) === null || _fileObject$file3 === void 0 ? void 0 : _fileObject$file3.name) !== null && _fileObject$file$name2 !== void 0 ? _fileObject$file$name2 : 'file', "-").concat(i),
-      className: clsx(previewGridClasses.gridListTile, !isImage$1 && classes.iconWrapper)
-    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitle), getPreviewIcon(fileObject, classes, isImage$1, (previewGridProps === null || previewGridProps === void 0 ? void 0 : (_previewGridProps$gri = previewGridProps.gridListTitleBar) === null || _previewGridProps$gri === void 0 ? void 0 : _previewGridProps$gri.titlePosition) === 'top'), /*#__PURE__*/React.createElement(GridListTileBar, _extends({
-      title: fileTitle,
-      actionIcon: /*#__PURE__*/React.createElement(IconButton, {
-        onClick: handleRemove(i),
-        "aria-label": 'Delete',
-        className: clsx(previewGridClasses.removeIconButton, classes.icon)
-      }, _DeleteIcon || (_DeleteIcon = /*#__PURE__*/React.createElement(DeleteIcon, null)))
-    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitleBar)));
-  }));
-};
-
-process.env.NODE_ENV !== "production" ? PreviewList.propTypes = {
-  fileObjects: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filesLimit: PropTypes.number.isRequired,
-  getCols: PropTypes.func.isRequired,
-  getPreviewIcon: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
-  previewChipProps: PropTypes.object,
-  previewGridClasses: PropTypes.object,
-  previewGridProps: PropTypes.object,
-  previewType: PropTypes.string.isRequired,
-  showFileNames: PropTypes.bool,
-  useChipsForPreview: PropTypes.bool
-} : void 0;
-
-var _excluded$3 = ["className", "message", "onClose", "variant"];
-var variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon
-};
-var useStyles$1 = makeStyles(function (theme) {
-  return {
-    successAlert: {
-      backgroundColor: theme.palette.success.main
-    },
-    errorAlert: {
-      backgroundColor: theme.palette.error.main
-    },
-    infoAlert: {
-      backgroundColor: theme.palette.info.main
-    },
-    warningAlert: {
-      backgroundColor: theme.palette.warning.main
-    },
-    message: {
-      display: 'flex',
-      alignItems: 'center',
-      '& > svg': {
-        marginRight: theme.spacing(1)
-      }
-    },
-    icon: {
-      fontSize: 20,
-      opacity: 0.9
-    },
-    closeButton: {}
-  };
-}, {
-  name: 'MuiDropzoneSnackbar'
-});
-
-function SnackbarContentWrapper(_ref) {
-  var className = _ref.className,
-      message = _ref.message,
-      onClose = _ref.onClose,
-      variant = _ref.variant,
-      other = _objectWithoutProperties(_ref, _excluded$3);
-
-  var classes = useStyles$1();
-  var Icon = variantIcon[variant];
-  return /*#__PURE__*/React.createElement(SnackbarContent, _extends({
-    className: clsx(classes["".concat(variant, "Alert")], className),
-    "aria-describedby": "client-snackbar",
-    message: /*#__PURE__*/React.createElement("span", {
-      id: "client-snackbar",
-      className: classes.message
-    }, /*#__PURE__*/React.createElement(Icon, {
-      className: classes.icon
-    }), message),
-    action: [/*#__PURE__*/React.createElement(IconButton, {
-      key: "close",
-      "aria-label": "Close",
-      color: "inherit",
-      className: classes.closeButton,
-      onClick: onClose
-    }, /*#__PURE__*/React.createElement(CloseIcon, {
-      className: classes.icon
-    }))]
-  }, other));
-}
-
-process.env.NODE_ENV !== "production" ? SnackbarContentWrapper.propTypes = {
-  className: PropTypes.string,
-  message: PropTypes.node,
-  onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired
-} : void 0;
-
-/**
- * Holds state required to utilize the snackbar and provides handlers to send messages via the snackbar
- */
-
-var useSnackbar = function useSnackbar(onAlert) {
-  var _useState = useState({
-    open: false,
-    message: '',
-    variant: 'success'
-  }),
-      _useState2 = _slicedToArray(_useState, 2),
-      state = _useState2[0],
-      setState = _useState2[1];
-
-  var sendMessage = useCallback(function (message, variant) {
-    setState({
-      open: true,
-      message: message,
-      variant: variant
-    });
-
-    if (onAlert) {
-      onAlert(message, variant);
-    }
-  }, [onAlert]);
-  var handleCloseSnackbar = useCallback(function () {
-    setState(function (prev) {
-      return _extends({}, prev, {
-        open: false
-      });
-    });
-  }, []);
-  return {
-    handleCloseSnackbar: handleCloseSnackbar,
-    sendMessage: sendMessage,
-    snackbarMessage: state.message,
-    snackbarVariant: state.variant,
-    snackbarOpen: state.open
-  };
-};
-
-var useStyles = makeStyles$1(function (_ref) {
-  var spacing = _ref.spacing,
-      palette = _ref.palette,
-      shape = _ref.shape;
-  return {
-    '@keyframes progress': {
-      '0%': {
-        backgroundPosition: '0 0'
-      },
-      '100%': {
-        backgroundPosition: '-70px 0'
-      }
-    },
-    root: {
-      display: 'flex',
-      position: 'relative',
-      width: '100%',
-      minHeight: '250px',
-      backgroundColor: palette.background.paper,
-      border: 'dashed',
-      borderColor: palette.divider,
-      borderRadius: shape.borderRadius,
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      overflow: 'hidden',
-      flexDirection: 'column',
-      justifyContent: 'center'
-    },
-    active: {
-      animation: '$progress 2s linear infinite !important',
-      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.background.paper, ",\n            ").concat(palette.background.paper, " 25px,\n            ").concat(palette.divider, " 25px,\n            ").concat(palette.divider, " 50px)"),
-      backgroundSize: '150% 100%',
-      border: 'solid',
-      borderColor: palette.primary.light
-    },
-    invalid: {
-      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.error.light, ",\n            ").concat(palette.error.light, " 25px,\n            ").concat(palette.error.dark, " 25px,\n            ").concat(palette.error.dark, " 50px)"),
-      borderColor: palette.error.main
-    },
-    textContainer: {
-      display: 'flex'
-    },
-    text: {
-      marginBottom: spacing(3),
-      marginTop: spacing(3)
-    },
-    icon: {
-      width: 51,
-      height: 51,
-      color: palette.text.primary
-    }
-  };
-}, {
-  name: 'MuiDropzoneArea'
-});
-
-var defaultGetCols = function defaultGetCols(width, filesLimit) {
-  var returnBelowLimit = function returnBelowLimit(number) {
-    if (number < filesLimit) {
-      return number;
-    }
-
-    return filesLimit;
-  };
-
-  switch (width) {
-    case 'xs':
-      return returnBelowLimit(1);
-
-    case 'sm':
-      return returnBelowLimit(2);
-
-    case 'md':
-      return returnBelowLimit(3);
-
-    case 'lg':
-      return returnBelowLimit(4);
-
-    case 'xl':
-      return returnBelowLimit(5);
-  }
-};
-
-var defaultSnackbarAnchorOrigin = {
-  horizontal: 'left',
-  vertical: 'bottom'
-};
-
-var defaultGetPreviewIcon = function defaultGetPreviewIcon(fileObject, classes, isImage, titleBarTop) {
-  if (isImage) {
-    return /*#__PURE__*/React.createElement("img", {
-      className: classes.image,
-      role: "presentation",
-      src: fileObject.data
-    });
-  }
-
-  return /*#__PURE__*/React.createElement(Grid$1, {
-    container: true,
-    className: classes.iconWrapper,
-    justify: "center"
-  }, /*#__PURE__*/React.createElement(AttachFileIcon, {
-    className: clsx(classes.fileIcon, titleBarTop && classes.fileIconBottom)
-  }));
-};
-/**
- * This components creates a Material-UI Dropzone, with previews and snackbar notifications.
- */
-
-
-var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
-  var _PreviewList;
-
-  var fileObjects = _ref2.fileObjects,
-      filesLimit = _ref2.filesLimit,
-      getFileAddedMessage = _ref2.getFileAddedMessage,
-      getFileLimitExceedMessage = _ref2.getFileLimitExceedMessage,
-      getFileRemovedMessage = _ref2.getFileRemovedMessage,
-      getDropRejectMessage = _ref2.getDropRejectMessage,
-      onAdd = _ref2.onAdd,
-      onAlert = _ref2.onAlert,
-      onDrop = _ref2.onDrop,
-      onDropRejected = _ref2.onDropRejected,
-      onDelete = _ref2.onDelete,
-      acceptedFiles = _ref2.acceptedFiles,
-      alertSnackbarProps = _ref2.alertSnackbarProps,
-      disableRejectionFeedback = _ref2.disableRejectionFeedback,
-      dropzoneClass = _ref2.dropzoneClass,
-      dropzoneParagraphClass = _ref2.dropzoneParagraphClass,
-      dropzoneProps = _ref2.dropzoneProps,
-      dropzoneText = _ref2.dropzoneText,
-      getCols = _ref2.getCols,
-      getPreviewIcon = _ref2.getPreviewIcon,
-      Icon = _ref2.Icon,
-      inputProps = _ref2.inputProps,
-      maxFileSize = _ref2.maxFileSize,
-      previewChipProps = _ref2.previewChipProps,
-      previewGridClasses = _ref2.previewGridClasses,
-      previewGridProps = _ref2.previewGridProps,
-      previewText = _ref2.previewText,
-      previewType = _ref2.previewType,
-      showAlerts = _ref2.showAlerts,
-      showFileNames = _ref2.showFileNames,
-      useChipsForPreview = _ref2.useChipsForPreview;
-  var classes = useStyles();
-
-  var _useSnackbar = useSnackbar(onAlert),
-      handleCloseSnackbar = _useSnackbar.handleCloseSnackbar,
-      sendMessage = _useSnackbar.sendMessage,
-      snackbarMessage = _useSnackbar.snackbarMessage,
-      snackbarOpen = _useSnackbar.snackbarOpen,
-      snackbarVariant = _useSnackbar.snackbarVariant;
-
-  var handleDropAccepted = useCallback( /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(acceptedFiles, evt) {
-      var message, fileObjs, successMessage;
-      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              if (!(filesLimit > 1 && fileObjects.length + acceptedFiles.length > filesLimit)) {
-                _context2.next = 4;
-                break;
-              }
-
-              message = getFileLimitExceedMessage(filesLimit);
-              sendMessage(message, 'error');
-              return _context2.abrupt("return");
-
-            case 4:
-              // Notify Drop event
-              if (onDrop) {
-                onDrop(acceptedFiles, evt);
-              } // Retrieve fileObjects data
-
-
-              _context2.next = 7;
-              return Promise.all(acceptedFiles.map( /*#__PURE__*/function () {
-                var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(file) {
-                  var data;
-                  return _regeneratorRuntime.wrap(function _callee$(_context) {
-                    while (1) {
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          _context.next = 2;
-                          return readFile(file);
-
-                        case 2:
-                          data = _context.sent;
-                          return _context.abrupt("return", {
-                            file: file,
-                            data: data
-                          });
-
-                        case 4:
-                        case "end":
-                          return _context.stop();
-                      }
-                    }
-                  }, _callee);
-                }));
-
-                return function (_x3) {
-                  return _ref4.apply(this, arguments);
-                };
-              }()));
-
-            case 7:
-              fileObjs = _context2.sent;
-
-              // Notify added files
-              if (onAdd) {
-                onAdd(fileObjs);
-              }
-
-              successMessage = fileObjs.reduce(function (msg, fileObj) {
-                return msg + getFileAddedMessage(fileObj.file.name);
-              }, '');
-              sendMessage(successMessage, 'success');
-
-            case 11:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function (_x, _x2) {
-      return _ref3.apply(this, arguments);
-    };
-  }(), [filesLimit, fileObjects, onDrop]);
-  var handleDropRejected = useCallback(function (rejectedFiles, evt) {
-    var message = '';
-
-    if (fileObjects.length + rejectedFiles.length > filesLimit) {
-      message = getFileLimitExceedMessage(filesLimit);
-    } else {
-      rejectedFiles.forEach(function (rejectedFile) {
-        message = getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize);
-      });
-    }
-
-    if (onDropRejected) {
-      onDropRejected(rejectedFiles, evt);
-    }
-
-    sendMessage(message, 'error');
-  }, [acceptedFiles, maxFileSize, onDropRejected]);
-  var handleRemove = useCallback(function (fileIndex) {
-    return function (event) {
-      event.stopPropagation(); // Find removed fileObject
-
-      var removedFileObj = fileObjects[fileIndex]; // Notify removed file
-
-      if (onDelete) {
-        onDelete(removedFileObj, fileIndex);
-      }
-
-      var message = getFileRemovedMessage(removedFileObj.file.name);
-      sendMessage(message, 'info');
-    };
-  }, [fileObjects, onDelete, getFileRemovedMessage]);
-  var acceptFiles = acceptedFiles === null || acceptedFiles === void 0 ? void 0 : acceptedFiles.join(',');
-  var isMultiple = filesLimit > 1;
-  var someFiles = fileObjects.length > 0;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Dropzone, _extends({}, dropzoneProps, {
-    accept: acceptFiles,
-    onDropAccepted: handleDropAccepted,
-    onDropRejected: handleDropRejected,
-    maxSize: maxFileSize,
-    multiple: isMultiple
-  }), function (_ref5) {
-    var getRootProps = _ref5.getRootProps,
-        getInputProps = _ref5.getInputProps,
-        isDragActive = _ref5.isDragActive,
-        isDragReject = _ref5.isDragReject;
-    return /*#__PURE__*/React.createElement("div", _extends({}, getRootProps(), {
-      className: clsx(classes.root, dropzoneClass, isDragActive && classes.active, !disableRejectionFeedback && isDragReject && classes.invalid)
-    }), /*#__PURE__*/React.createElement("input", getInputProps(inputProps)), /*#__PURE__*/React.createElement(Grid$1, {
-      container: true,
-      className: classes.textContainer,
-      direction: "column",
-      justify: "center",
-      alignItems: "center"
-    }, /*#__PURE__*/React.createElement(Typography, {
-      variant: "h5",
-      component: "p",
-      className: clsx(classes.text, dropzoneParagraphClass)
-    }, dropzoneText), Icon ? /*#__PURE__*/React.createElement(Icon, {
-      className: classes.icon
-    }) : /*#__PURE__*/React.createElement(CloudUploadIcon, {
-      className: classes.icon
-    })), someFiles && previewType === 'inside' && (_PreviewList || (_PreviewList = /*#__PURE__*/React.createElement(PreviewList, {
-      fileObjects: fileObjects,
-      filesLimit: filesLimit,
-      getCols: getCols,
-      handleRemove: handleRemove,
-      getPreviewIcon: getPreviewIcon,
-      showFileNames: showFileNames,
-      useChipsForPreview: useChipsForPreview,
-      previewChipProps: previewChipProps,
-      previewGridClasses: previewGridClasses,
-      previewGridProps: previewGridProps,
-      previewType: previewType
-    }))));
-  }), someFiles && previewType === 'below' && /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Typography, {
-    variant: "subtitle1",
-    component: "span"
-  }, previewText), /*#__PURE__*/React.createElement(PreviewList, {
-    fileObjects: fileObjects,
-    filesLimit: filesLimit,
-    getCols: getCols,
-    handleRemove: handleRemove,
-    getPreviewIcon: getPreviewIcon,
-    showFileNames: showFileNames,
-    useChipsForPreview: useChipsForPreview,
-    previewChipProps: previewChipProps,
-    previewGridClasses: previewGridClasses,
-    previewGridProps: previewGridProps,
-    previewType: previewType
-  })), (typeof showAlerts === 'boolean' && showAlerts || Array.isArray(showAlerts) && showAlerts.includes(snackbarVariant)) && /*#__PURE__*/React.createElement(Snackbar, _extends({
-    anchorOrigin: defaultSnackbarAnchorOrigin,
-    autoHideDuration: 6000
-  }, alertSnackbarProps, {
-    open: snackbarOpen,
-    onClose: handleCloseSnackbar
-  }), /*#__PURE__*/React.createElement(SnackbarContentWrapper, {
-    onClose: handleCloseSnackbar,
-    variant: snackbarVariant,
-    message: snackbarMessage
-  })));
-};
-
-DropzoneAreaBase.defaultProps = {
-  acceptedFiles: [],
-  filesLimit: 3,
-  fileObjects: [],
-  maxFileSize: 3000000,
-  dropzoneText: 'Drag and drop a file here or click',
-  previewText: 'Preview:',
-  previewType: 'inside',
-  disableRejectionFeedback: false,
-  showFileNames: true,
-  useChipsForPreview: false,
-  previewChipProps: {},
-  previewGridClasses: {},
-  previewGridProps: {},
-  showAlerts: true,
-  alertSnackbarProps: {
-    anchorOrigin: {
-      horizontal: 'left',
-      vertical: 'bottom'
-    },
-    autoHideDuration: 6000
-  },
-  getCols: defaultGetCols,
-  getFileLimitExceedMessage: function getFileLimitExceedMessage(filesLimit) {
-    return "Maximum allowed number of files exceeded. Only ".concat(filesLimit, " allowed");
-  },
-  getFileAddedMessage: function getFileAddedMessage(fileName) {
-    return "File ".concat(fileName, " successfully added.");
-  },
-  getPreviewIcon: defaultGetPreviewIcon,
-  getFileRemovedMessage: function getFileRemovedMessage(fileName) {
-    return "File ".concat(fileName, " removed.");
-  },
-  getDropRejectMessage: function getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize) {
-    var message = "File ".concat(rejectedFile.name, " was rejected. ");
-
-    if (!acceptedFiles.includes(rejectedFile.type)) {
-      message += 'File type not supported. ';
-    }
-
-    if (rejectedFile.size > maxFileSize) {
-      message += 'File is too big. Size limit is ' + convertBytesToMbsOrKbs(maxFileSize) + '. ';
-    }
-
-    return message;
-  }
-};
-var FileObjectShape = PropTypes.shape({
-  file: PropTypes.object,
-  data: PropTypes.any
-});
-process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = _defineProperty({
-  /** A list of file types to accept.
-  * @see See [here](https://react-dropzone.js.org/#section-accepting-specific-file-types) for more details.
-  */
-  acceptedFiles: PropTypes.arrayOf(PropTypes.string),
-
-  /** Maximum number of files that can be loaded into the dropzone. */
-  filesLimit: PropTypes.number,
-
-  /** Icon to be displayed inside the dropzone area. */
-  Icon: PropTypes.elementType,
-
-  /** Currently loaded files. */
-  fileObjects: PropTypes.arrayOf(FileObjectShape),
-
-  /** Maximum file size (in bytes) that the dropzone will accept. */
-  maxFileSize: PropTypes.number,
-
-  /** Text inside the dropzone. */
-  dropzoneText: PropTypes.string,
-
-  /** Custom CSS class name for dropzone container. */
-  dropzoneClass: PropTypes.string,
-
-  /** Custom CSS class name for text inside the container. */
-  dropzoneParagraphClass: PropTypes.string,
-
-  /** Disable feedback effect when dropping rejected files. */
-  disableRejectionFeedback: PropTypes.bool,
-
-  /** Shows file name under the dropzone image. */
-  showFileNames: PropTypes.bool,
-
-  /** Shows file name under the image. */
-  useChipsForPreview: PropTypes.bool,
-
-  /**
-  * Props to pass to the Material-UI Chip components.<br/>Requires `useChipsForPreview` prop to be `true`.
-  *
-  * @see See [Material-UI Chip](https://material-ui.com/api/chip/#props) for available values.
-  */
-  previewChipProps: PropTypes.object,
-
-  /**
-  * Custom CSS classNames for preview Grid components.<br/>
-  * Should be in the form {container: string, item: string, image: string}.
-  */
-  previewGridClasses: PropTypes.object,
-
-  /**
-  * Props to pass to the Material-UI Grid components.<br/>
-  * Should be in the form {container: GridProps, item: GridProps}.
-  *
-  * @see See [Material-UI Grid](https://material-ui.com/api/grid/#props) for available GridProps values.
-  */
-  previewGridProps: PropTypes.object,
-
-  /** The label for the file preview section. */
-  previewText: PropTypes.string,
-
-  /** Determines whether previews are shown inside the dropzone area, below, or not at all. Acceptable values are 'inside', 'below', 'none'. */
-  previewType: PropTypes.oneOf(['inside', 'below', 'none']),
-
-  /**
-  * Shows styled Material-UI Snackbar when files are dropped, deleted or rejected.
-  *
-  * - can be a boolean ("global" `true` or `false` for all alerts).
-  * - can be an array, with values 'error', 'info', 'success' to select to view only certain alerts:
-  *  - showAlerts={['error']} for only errors.
-  *  - showAlerts={['error', 'info']} for both errors and info.
-  *  - showAlerts={['error', 'success', 'info']} is same as showAlerts={true}.
-  *  - showAlerts={[]} is same as showAlerts={false}.
-  */
-  showAlerts: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.oneOf(['error', 'success', 'info']))]),
-
-  /**
-  * Props to pass to the Material-UI Snackbar components.<br/>Requires `showAlerts` prop to be `true`.
-  *
-  * @see See [Material-UI Snackbar](https://material-ui.com/api/snackbar/#props) for available values.
-  */
-  alertSnackbarProps: PropTypes.object,
-
-  /**
-  * Props to pass to the Dropzone component.
-  *
-  * @see See [Dropzone props](https://react-dropzone.js.org/#src) for available values.
-  */
-  dropzoneProps: PropTypes.object,
-
-  /**
-  * Attributes applied to the input element.
-  *
-  * @see See [MDN Input File attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Additional_attributes) for available values.
-  */
-  inputProps: PropTypes.object,
-
-  /**
-  * A function which determines which the number of columns to display in the preview list
-  *
-  * *Default*: Returns a sensible number of columns depending on the screen size (i.e. xs=1, sm=2, md=3, lg=4, xl=5) without exceeding the filesLimit (e.g. There would be no point displaying 4 columns if the filesLimit is 3)
-  *
-  * @param {string} width Width prop from useWidth, this will be one of ['xs','sm','md','lg','xl'] depending on the current screen size
-  * @param {number} filesLimit The `filesLimit` prop
-  * @param {number} currentNumberOfFiles The number of files in the `state.fileObjects`
-  */
-  getCols: PropTypes.func,
-
-  /**
-  * Get alert message to display when files limit is exceed.
-  *
-  * *Default*: "Maximum allowed number of files exceeded. Only ${filesLimit} allowed"
-  *
-  * @param {number} filesLimit The `filesLimit` currently set for the component.
-  */
-  getFileLimitExceedMessage: PropTypes.func,
-
-  /**
-  * Get alert message to display when a new file is added.
-  *
-  * *Default*: "File ${fileName} successfully added."
-  *
-  * @param {string} fileName The newly added file name.
-  */
-  getFileAddedMessage: PropTypes.func,
-
-  /**
-  * Get alert message to display when a file is removed.
-  *
-  * *Default*: "File ${fileName} removed."
-  *
-  * @param {string} fileName The name of the removed file.
-  */
-  getFileRemovedMessage: PropTypes.func,
-
-  /**
-  * Get alert message to display when a file is rejected onDrop.
-  *
-  * *Default*: "File ${rejectedFile.name} was rejected."
-  *
-  * @param {Object} rejectedFile The file that got rejected
-  * @param {string[]} acceptedFiles The `acceptedFiles` prop currently set for the component
-  * @param {number} maxFileSize The `maxFileSize` prop currently set for the component
-  */
-  getDropRejectMessage: PropTypes.func,
-
-  /**
-  * A function which determines which icon to display for a file preview.
-  *
-  * *Default*: If its an image then displays a preview the image, otherwise it will display an attachment icon
-  *
-  * @param {FileObject} objectFile The file which the preview will belong to
-  * @param {Object} classes The classes for the file preview icon, in the default case we use the 'image' className.
-  */
-  getPreviewIcon: PropTypes.func,
-
-  /**
-  * Fired when new files are added to dropzone.
-  *
-  * @param {FileObject[]} newFiles The new files added to the dropzone.
-  */
-  onAdd: PropTypes.func,
-
-  /**
-  * Fired when an alert is triggered.
-  *
-  * @param {string} message Alert message.
-  * @param {string} variant One of "error", "info", "success".
-  */
-  onAlert: PropTypes.func,
-
-  /**
-  * Fired when a file is deleted from the previews panel.
-  *
-  * @param {FileObject} deletedFileObject The file that was removed.
-  * @param {number} index The index of the removed file object.
-  */
-  onDelete: PropTypes.func,
-
-  /**
-  * Fired when the user drops files into the dropzone.
-  *
-  * @param {File[]} droppedFiles All the files dropped into the dropzone.
-  * @param {Event} event The react-dropzone drop event.
-  */
-  onDrop: PropTypes.func,
-
-  /**
-  * Fired when a file is rejected because of wrong file type, size or goes beyond the filesLimit.
-  *
-  * @param {File[]} rejectedFiles All the rejected files.
-  * @param {Event} event The react-dropzone drop event.
-  */
-  onDropRejected: PropTypes.func
-}, "onAlert", PropTypes.func) : void 0;
-
-/**
  * holds files in its state and provides some handler methods to add and remove from that state
  */
 
@@ -963,25 +126,8 @@ var useFiles = function useFiles(_ref) {
   var _useState = useState([]),
       _useState2 = _slicedToArray(_useState, 2),
       fileObjects = _useState2[0],
-      setFileObjects = _useState2[1]; // When the fileObjects change, fire the onChange method if it's defined
+      setFileObjects = _useState2[1];
 
-
-  useEffect(function () {
-    if (onChange) {
-      onChange(fileObjects.map(function (fileObject) {
-        return fileObject.file;
-      }));
-    }
-  }, [fileObjects, onChange]); // Initialize the files when the hook is loaded
-
-  useEffect(function () {
-    loadInitialFiles();
-    return function () {
-      if (clearOnUnmount) {
-        setFileObjects([]);
-      }
-    };
-  }, [loadInitialFiles]);
   var loadInitialFiles = useCallback( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
     var fileObjs;
     return _regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -1068,8 +214,7 @@ var useFiles = function useFiles(_ref) {
     });
   }, [filesLimit]);
   var handleDeleteFile = useCallback(function (removedFileObj, removedFileObjIdx) {
-    event.stopPropagation(); // Calculate remaining fileObjects array
-
+    // Calculate remaining fileObjects array
     var remainingFileObjs = fileObjects.filter(function (fileObject, i) {
       return i !== removedFileObjIdx;
     }); // Notify removed file
@@ -1084,8 +229,25 @@ var useFiles = function useFiles(_ref) {
 
   var handleResetFiles = function handleResetFiles() {
     return setFileObjects([]);
-  };
+  }; // When the fileObjects change, fire the onChange method if it's defined
 
+
+  useEffect(function () {
+    if (onChange) {
+      onChange(fileObjects.map(function (fileObject) {
+        return fileObject.file;
+      }));
+    }
+  }, [fileObjects, onChange]); // Initialize the files when the hook is loaded
+
+  useEffect(function () {
+    loadInitialFiles();
+    return function () {
+      if (clearOnUnmount) {
+        setFileObjects([]);
+      }
+    };
+  }, [clearOnUnmount, loadInitialFiles]);
   return {
     handleAddFiles: handleAddFiles,
     handleDeleteFile: handleDeleteFile,
@@ -1093,6 +255,877 @@ var useFiles = function useFiles(_ref) {
     fileObjects: fileObjects
   };
 };
+
+/**
+ * Holds state required to utilize the snackbar and provides handlers to send messages via the snackbar
+ */
+
+var useSnackbar = function useSnackbar(onAlert) {
+  var _useState = useState({
+    open: false,
+    message: '',
+    variant: 'success'
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
+
+  var sendMessage = useCallback(function (message, variant) {
+    setState({
+      open: true,
+      message: message,
+      variant: variant
+    });
+
+    if (onAlert) {
+      onAlert(message, variant);
+    }
+  }, [onAlert]);
+  var handleCloseSnackbar = useCallback(function () {
+    setState(function (prev) {
+      return _extends({}, prev, {
+        open: false
+      });
+    });
+  }, []);
+  return {
+    handleCloseSnackbar: handleCloseSnackbar,
+    sendMessage: sendMessage,
+    snackbarMessage: state.message,
+    snackbarVariant: state.variant,
+    snackbarOpen: state.open
+  };
+};
+
+/**
+ * Returns xs,sm,md,lg or xl depending on the screenSize
+ * @see https://material-ui.com/components/use-media-query/#migrating-from-withwidth
+ */
+
+var useWidth = function useWidth() {
+  var theme = useTheme();
+
+  var keys = _toConsumableArray(theme.breakpoints.keys).reverse();
+
+  return keys.reduce(function (output, key) {
+    var matches = matchMediaQuery(theme.breakpoints.up(key));
+    return !output && matches ? key : output;
+  }, null) || 'xs';
+};
+
+/**
+ * Calculates the number of columns to use in the preview based on a function passed in
+ * numberOfColumns is a state variable which will update every time the width of the
+ * screen changes
+ */
+
+var useColumns = function useColumns(getCols, filesLimit, numberOfFileObjects) {
+  var _useState = useState(1),
+      _useState2 = _slicedToArray(_useState, 2),
+      numberOfColumns = _useState2[0],
+      setCols = _useState2[1];
+
+  var width = useWidth();
+  useEffect(function () {
+    var cols = getCols(width, filesLimit, numberOfFileObjects);
+    setCols(cols);
+  }, [filesLimit, getCols, numberOfFileObjects, width]);
+  return numberOfColumns;
+};
+
+var _DeleteIcon;
+var useStyles$2 = makeStyles(function (_ref) {
+  var spacing = _ref.spacing;
+  return {
+    root: {
+      alignItems: 'center',
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      margin: 0,
+      backgroundColor: 'rgba(255,255,255,0.87)'
+    },
+    icon: {
+      color: 'rgba(255, 255, 255, 0.54)'
+    },
+    iconWrapper: {
+      height: '100%',
+      backgroundColor: '#f2f2f2'
+    },
+    fileIcon: {
+      flexGrow: 1,
+      height: '50%',
+      marginTop: spacing(3)
+    },
+    fileIconBottom: {
+      marginTop: spacing(9)
+    }
+  };
+}, {
+  name: 'MuiDropzonePreviewList'
+});
+
+var PreviewList = function PreviewList(_ref2) {
+  var fileObjects = _ref2.fileObjects,
+      filesLimit = _ref2.filesLimit,
+      getCols = _ref2.getCols,
+      handleRemove = _ref2.handleRemove,
+      showFileNames = _ref2.showFileNames,
+      useChipsForPreview = _ref2.useChipsForPreview,
+      previewChipProps = _ref2.previewChipProps,
+      previewGridClasses = _ref2.previewGridClasses,
+      previewGridProps = _ref2.previewGridProps,
+      previewType = _ref2.previewType,
+      getPreviewIcon = _ref2.getPreviewIcon,
+      handlePreviewClick = _ref2.handlePreviewClick;
+  var classes = useStyles$2();
+  var cols = useColumns(getCols, filesLimit, fileObjects.length);
+  var previewInside = previewType === 'inside';
+
+  if (useChipsForPreview) {
+    return /*#__PURE__*/React.createElement(Grid, _extends({
+      spacing: 1,
+      direction: "row"
+    }, previewGridProps.container, {
+      container: true,
+      className: clsx(classes.root, previewGridClasses.container)
+    }), fileObjects.map(function (fileObject, i) {
+      var _fileObject$file$name, _fileObject$file;
+
+      return /*#__PURE__*/React.createElement(Grid, _extends({}, previewGridProps.item, {
+        item: true,
+        key: "".concat((_fileObject$file$name = (_fileObject$file = fileObject.file) === null || _fileObject$file === void 0 ? void 0 : _fileObject$file.name) !== null && _fileObject$file$name !== void 0 ? _fileObject$file$name : 'file', "-").concat(i),
+        className: classes.imageContainer
+      }), /*#__PURE__*/React.createElement(Chip, _extends({
+        variant: "outlined"
+      }, previewChipProps, {
+        label: fileObject.file.name,
+        onDelete: handleRemove(i)
+      })));
+    }));
+  }
+
+  return /*#__PURE__*/React.createElement(GridList, _extends({
+    cols: cols,
+    className: clsx(previewGridClasses.container, previewInside && classes.root)
+  }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridList), fileObjects.map(function (fileObject, i) {
+    var _fileObject$file2, _fileObject$file$name2, _fileObject$file3, _previewGridProps$gri;
+
+    var fileTitle = showFileNames && ((_fileObject$file2 = fileObject.file) === null || _fileObject$file2 === void 0 ? void 0 : _fileObject$file2.name);
+    var isImage$1 = isImage(fileObject.file);
+    return /*#__PURE__*/React.createElement(GridListTile, _extends({
+      key: "".concat((_fileObject$file$name2 = (_fileObject$file3 = fileObject.file) === null || _fileObject$file3 === void 0 ? void 0 : _fileObject$file3.name) !== null && _fileObject$file$name2 !== void 0 ? _fileObject$file$name2 : 'file', "-").concat(i),
+      className: clsx(previewGridClasses.gridListTile, !isImage$1 && classes.iconWrapper),
+      onClick: handlePreviewClick(i),
+      onKeyDown: handlePreviewClick(i)
+    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitle), getPreviewIcon(fileObject, classes, isImage$1, (previewGridProps === null || previewGridProps === void 0 ? void 0 : (_previewGridProps$gri = previewGridProps.gridListTitleBar) === null || _previewGridProps$gri === void 0 ? void 0 : _previewGridProps$gri.titlePosition) === 'top'), /*#__PURE__*/React.createElement(GridListTileBar, _extends({
+      title: fileTitle,
+      actionIcon: /*#__PURE__*/React.createElement(IconButton, {
+        onClick: handleRemove(i),
+        "aria-label": "Delete",
+        className: clsx(previewGridClasses.removeIconButton, classes.icon)
+      }, _DeleteIcon || (_DeleteIcon = /*#__PURE__*/React.createElement(DeleteIcon, null)))
+    }, previewGridProps === null || previewGridProps === void 0 ? void 0 : previewGridProps.gridListTitleBar)));
+  }));
+};
+
+process.env.NODE_ENV !== "production" ? PreviewList.propTypes = {
+  fileObjects: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filesLimit: PropTypes.number.isRequired,
+  getCols: PropTypes.func.isRequired,
+  getPreviewIcon: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  handlePreviewClick: PropTypes.func.isRequired,
+  previewChipProps: PropTypes.object,
+  previewGridClasses: PropTypes.object,
+  previewGridProps: PropTypes.object,
+  previewType: PropTypes.string.isRequired,
+  showFileNames: PropTypes.bool,
+  useChipsForPreview: PropTypes.bool
+} : void 0;
+
+var _excluded$3 = ["className", "message", "onClose", "variant"];
+var variantIcon = {
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  error: ErrorIcon,
+  info: InfoIcon
+};
+var useStyles$1 = makeStyles(function (theme) {
+  return {
+    successAlert: {
+      backgroundColor: theme.palette.success.main
+    },
+    errorAlert: {
+      backgroundColor: theme.palette.error.main
+    },
+    infoAlert: {
+      backgroundColor: theme.palette.info.main
+    },
+    warningAlert: {
+      backgroundColor: theme.palette.warning.main
+    },
+    message: {
+      display: 'flex',
+      alignItems: 'center',
+      '& > svg': {
+        marginRight: theme.spacing(1)
+      }
+    },
+    icon: {
+      fontSize: 20,
+      opacity: 0.9
+    },
+    closeButton: {}
+  };
+}, {
+  name: 'MuiDropzoneSnackbar'
+});
+
+function SnackbarContentWrapper(_ref) {
+  var className = _ref.className,
+      message = _ref.message,
+      onClose = _ref.onClose,
+      variant = _ref.variant,
+      other = _objectWithoutProperties(_ref, _excluded$3);
+
+  var classes = useStyles$1();
+  var Icon = variantIcon[variant];
+  return /*#__PURE__*/React.createElement(SnackbarContent, _extends({
+    className: clsx(classes["".concat(variant, "Alert")], className),
+    "aria-describedby": "client-snackbar",
+    message: /*#__PURE__*/React.createElement("span", {
+      id: "client-snackbar",
+      className: classes.message
+    }, /*#__PURE__*/React.createElement(Icon, {
+      className: classes.icon
+    }), message),
+    action: [/*#__PURE__*/React.createElement(IconButton, {
+      key: "close",
+      "aria-label": "Close",
+      color: "inherit",
+      className: classes.closeButton,
+      onClick: onClose
+    }, /*#__PURE__*/React.createElement(CloseIcon, {
+      className: classes.icon
+    }))]
+  }, other));
+}
+
+process.env.NODE_ENV !== "production" ? SnackbarContentWrapper.propTypes = {
+  className: PropTypes.string,
+  message: PropTypes.node,
+  onClose: PropTypes.func,
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired
+} : void 0;
+
+var useStyles = makeStyles$1(function (_ref) {
+  var spacing = _ref.spacing,
+      palette = _ref.palette,
+      shape = _ref.shape;
+  return {
+    '@keyframes progress': {
+      '0%': {
+        backgroundPosition: '0 0'
+      },
+      '100%': {
+        backgroundPosition: '-70px 0'
+      }
+    },
+    root: {
+      display: 'flex',
+      position: 'relative',
+      width: '100%',
+      minHeight: '250px',
+      backgroundColor: palette.background.paper,
+      border: 'dashed',
+      borderColor: palette.divider,
+      borderRadius: shape.borderRadius,
+      boxSizing: 'border-box',
+      cursor: 'pointer',
+      overflow: 'hidden',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    active: {
+      animation: '$progress 2s linear infinite !important',
+      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.background.paper, ",\n            ").concat(palette.background.paper, " 25px,\n            ").concat(palette.divider, " 25px,\n            ").concat(palette.divider, " 50px)"),
+      backgroundSize: '150% 100%',
+      border: 'solid',
+      borderColor: palette.primary.light
+    },
+    invalid: {
+      backgroundImage: "repeating-linear-gradient(-45deg,\n            ".concat(palette.error.light, ",\n            ").concat(palette.error.light, " 25px,\n            ").concat(palette.error.dark, " 25px,\n            ").concat(palette.error.dark, " 50px)"),
+      borderColor: palette.error.main
+    },
+    textContainer: {
+      display: 'flex'
+    },
+    text: {
+      marginBottom: spacing(3),
+      marginTop: spacing(3)
+    },
+    icon: {
+      width: 51,
+      height: 51,
+      color: palette.text.primary
+    }
+  };
+}, {
+  name: 'MuiDropzoneArea'
+});
+
+var shouldShowAlert = function shouldShowAlert(enabledAlerts, alertVariant) {
+  if (!Array.isArray(enabledAlerts)) {
+    return true;
+  }
+
+  return enabledAlerts.includes(alertVariant);
+};
+
+var defaultGetCols = function defaultGetCols(width, filesLimit) {
+  var returnBelowLimit = function returnBelowLimit(number) {
+    if (number < filesLimit) {
+      return number;
+    }
+
+    return filesLimit;
+  };
+
+  switch (width) {
+    case 'xs':
+      return returnBelowLimit(1);
+
+    case 'sm':
+      return returnBelowLimit(2);
+
+    case 'md':
+      return returnBelowLimit(3);
+
+    case 'lg':
+      return returnBelowLimit(4);
+
+    case 'xl':
+      return returnBelowLimit(5);
+
+    default:
+      return returnBelowLimit(3);
+  }
+};
+
+var defaultSnackbarAnchorOrigin = {
+  horizontal: 'left',
+  vertical: 'bottom'
+};
+
+var defaultGetPreviewIcon = function defaultGetPreviewIcon(fileObject, classes, isImage, titleBarTop) {
+  if (isImage) {
+    return /*#__PURE__*/React.createElement("img", {
+      alt: "",
+      className: classes.image,
+      src: fileObject.data
+    });
+  }
+
+  return /*#__PURE__*/React.createElement(Grid$1, {
+    container: true,
+    className: classes.iconWrapper,
+    justify: "center"
+  }, /*#__PURE__*/React.createElement(AttachFileIcon, {
+    className: clsx(classes.fileIcon, titleBarTop && classes.fileIconBottom)
+  }));
+};
+/**
+ * This components creates a Material-UI Dropzone, with previews and snackbar notifications.
+ */
+
+
+var DropzoneAreaBase = function DropzoneAreaBase(_ref2) {
+  var _PreviewList;
+
+  var fileObjects = _ref2.fileObjects,
+      filesLimit = _ref2.filesLimit,
+      getFileAddedMessage = _ref2.getFileAddedMessage,
+      getFileLimitExceedMessage = _ref2.getFileLimitExceedMessage,
+      getFileRemovedMessage = _ref2.getFileRemovedMessage,
+      getDropRejectMessage = _ref2.getDropRejectMessage,
+      onAdd = _ref2.onAdd,
+      onAlert = _ref2.onAlert,
+      onDrop = _ref2.onDrop,
+      onDropRejected = _ref2.onDropRejected,
+      onDelete = _ref2.onDelete,
+      onPreviewClick = _ref2.onPreviewClick,
+      acceptedFiles = _ref2.acceptedFiles,
+      alertSnackbarProps = _ref2.alertSnackbarProps,
+      disableRejectionFeedback = _ref2.disableRejectionFeedback,
+      dropzoneClass = _ref2.dropzoneClass,
+      dropzoneParagraphClass = _ref2.dropzoneParagraphClass,
+      dropzoneProps = _ref2.dropzoneProps,
+      dropzoneText = _ref2.dropzoneText,
+      getCols = _ref2.getCols,
+      getPreviewIcon = _ref2.getPreviewIcon,
+      Icon = _ref2.Icon,
+      inputProps = _ref2.inputProps,
+      maxFileSize = _ref2.maxFileSize,
+      previewChipProps = _ref2.previewChipProps,
+      previewGridClasses = _ref2.previewGridClasses,
+      previewGridProps = _ref2.previewGridProps,
+      previewText = _ref2.previewText,
+      previewType = _ref2.previewType,
+      showAlerts = _ref2.showAlerts,
+      showFileNames = _ref2.showFileNames,
+      useChipsForPreview = _ref2.useChipsForPreview;
+  var classes = useStyles();
+
+  var _useSnackbar = useSnackbar(onAlert),
+      handleCloseSnackbar = _useSnackbar.handleCloseSnackbar,
+      sendMessage = _useSnackbar.sendMessage,
+      snackbarMessage = _useSnackbar.snackbarMessage,
+      snackbarOpen = _useSnackbar.snackbarOpen,
+      snackbarVariant = _useSnackbar.snackbarVariant;
+
+  var handleDropAccepted = useCallback( /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(droppedFiles, evt) {
+      var message, fileObjs, successMessage;
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!(filesLimit > 1 && fileObjects.length + droppedFiles.length > filesLimit)) {
+                _context2.next = 4;
+                break;
+              }
+
+              message = getFileLimitExceedMessage(filesLimit);
+              sendMessage(message, 'error');
+              return _context2.abrupt("return");
+
+            case 4:
+              // Notify Drop event
+              if (onDrop) {
+                onDrop(droppedFiles, evt);
+              } // Retrieve fileObjects data
+
+
+              _context2.next = 7;
+              return Promise.all(droppedFiles.map( /*#__PURE__*/function () {
+                var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(file) {
+                  var data;
+                  return _regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          _context.next = 2;
+                          return readFile(file);
+
+                        case 2:
+                          data = _context.sent;
+                          return _context.abrupt("return", {
+                            file: file,
+                            data: data
+                          });
+
+                        case 4:
+                        case "end":
+                          return _context.stop();
+                      }
+                    }
+                  }, _callee);
+                }));
+
+                return function (_x3) {
+                  return _ref4.apply(this, arguments);
+                };
+              }()));
+
+            case 7:
+              fileObjs = _context2.sent;
+
+              // Notify added files
+              if (onAdd) {
+                onAdd(fileObjs);
+              }
+
+              successMessage = fileObjs.reduce(function (msg, fileObj) {
+                return msg + getFileAddedMessage(fileObj.file.name);
+              }, '');
+              sendMessage(successMessage, 'success');
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x, _x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }(), [filesLimit, fileObjects.length, onDrop, onAdd, sendMessage, getFileLimitExceedMessage, getFileAddedMessage]);
+  var handleDropRejected = useCallback(function (rejectedFiles, evt) {
+    var message = '';
+    rejectedFiles.forEach(function (rejectedFile) {
+      message = getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize);
+    });
+
+    if (onDropRejected) {
+      onDropRejected(rejectedFiles, evt);
+    }
+
+    sendMessage(message, 'error');
+  }, [acceptedFiles, getDropRejectMessage, maxFileSize, onDropRejected, sendMessage]);
+  var handleRemove = useCallback(function (fileIndex) {
+    return function (event) {
+      event.stopPropagation(); // Find removed fileObject
+
+      var removedFileObj = fileObjects[fileIndex]; // Notify removed file
+
+      if (onDelete) {
+        onDelete(removedFileObj, fileIndex);
+      }
+
+      var message = getFileRemovedMessage(removedFileObj.file.name);
+      sendMessage(message, 'info');
+    };
+  }, [fileObjects, onDelete, getFileRemovedMessage, sendMessage]);
+  var handlePreviewClick = useCallback(function (fileIndex) {
+    return function (event) {
+      event.stopPropagation(); // Find previewed fileObject
+
+      var previewedFileObj = fileObjects[fileIndex];
+      onPreviewClick(previewedFileObj, fileIndex);
+    };
+  }, [fileObjects, onPreviewClick]);
+  var acceptFiles = acceptedFiles === null || acceptedFiles === void 0 ? void 0 : acceptedFiles.join(',');
+  var isMultiple = filesLimit > 1;
+  var someFiles = fileObjects.length > 0;
+  var alertsEnabled = typeof showAlerts === 'boolean' && showAlerts || Array.isArray(showAlerts);
+  var isAlertOpen = snackbarOpen && shouldShowAlert(showAlerts, snackbarVariant);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Dropzone, _extends({}, dropzoneProps, {
+    accept: acceptFiles,
+    onDropAccepted: handleDropAccepted,
+    onDropRejected: handleDropRejected,
+    maxSize: maxFileSize,
+    multiple: isMultiple
+  }), function (_ref5) {
+    var getRootProps = _ref5.getRootProps,
+        getInputProps = _ref5.getInputProps,
+        isDragActive = _ref5.isDragActive,
+        isDragReject = _ref5.isDragReject;
+    return /*#__PURE__*/React.createElement("div", getRootProps({
+      className: clsx(classes.root, dropzoneClass, isDragActive && classes.active, !disableRejectionFeedback && isDragReject && classes.invalid)
+    }), /*#__PURE__*/React.createElement("input", getInputProps(inputProps)), /*#__PURE__*/React.createElement(Grid$1, {
+      container: true,
+      className: classes.textContainer,
+      direction: "column",
+      justify: "center",
+      alignItems: "center"
+    }, /*#__PURE__*/React.createElement(Typography, {
+      variant: "h5",
+      component: "p",
+      className: clsx(classes.text, dropzoneParagraphClass)
+    }, dropzoneText), Icon ? /*#__PURE__*/React.createElement(Icon, {
+      className: classes.icon
+    }) : /*#__PURE__*/React.createElement(CloudUploadIcon, {
+      className: classes.icon
+    })), someFiles && previewType === 'inside' && (_PreviewList || (_PreviewList = /*#__PURE__*/React.createElement(PreviewList, {
+      fileObjects: fileObjects,
+      filesLimit: filesLimit,
+      getCols: getCols,
+      handleRemove: handleRemove,
+      getPreviewIcon: getPreviewIcon,
+      showFileNames: showFileNames,
+      useChipsForPreview: useChipsForPreview,
+      previewChipProps: previewChipProps,
+      previewGridClasses: previewGridClasses,
+      previewGridProps: previewGridProps,
+      previewType: previewType,
+      handlePreviewClick: handlePreviewClick
+    }))));
+  }), someFiles && previewType === 'below' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Typography, {
+    variant: "subtitle1",
+    component: "span"
+  }, previewText), /*#__PURE__*/React.createElement(PreviewList, {
+    fileObjects: fileObjects,
+    filesLimit: filesLimit,
+    getCols: getCols,
+    handleRemove: handleRemove,
+    getPreviewIcon: getPreviewIcon,
+    showFileNames: showFileNames,
+    useChipsForPreview: useChipsForPreview,
+    previewChipProps: previewChipProps,
+    previewGridClasses: previewGridClasses,
+    previewGridProps: previewGridProps,
+    previewType: previewType,
+    handlePreviewClick: handlePreviewClick
+  })), alertsEnabled && /*#__PURE__*/React.createElement(Snackbar, _extends({
+    anchorOrigin: defaultSnackbarAnchorOrigin,
+    autoHideDuration: 6000
+  }, alertSnackbarProps, {
+    open: isAlertOpen,
+    onClose: handleCloseSnackbar
+  }), /*#__PURE__*/React.createElement(SnackbarContentWrapper, {
+    onClose: handleCloseSnackbar,
+    variant: snackbarVariant,
+    message: snackbarMessage
+  })));
+};
+
+DropzoneAreaBase.defaultProps = {
+  acceptedFiles: [],
+  filesLimit: 3,
+  fileObjects: [],
+  maxFileSize: 3000000,
+  dropzoneText: 'Drag and drop a file here or click',
+  previewText: 'Preview:',
+  previewType: 'inside',
+  disableRejectionFeedback: false,
+  showFileNames: true,
+  useChipsForPreview: false,
+  previewChipProps: {},
+  previewGridClasses: {},
+  previewGridProps: {},
+  showAlerts: true,
+  alertSnackbarProps: {
+    anchorOrigin: {
+      horizontal: 'left',
+      vertical: 'bottom'
+    },
+    autoHideDuration: 6000
+  },
+  getCols: defaultGetCols,
+  getFileLimitExceedMessage: function getFileLimitExceedMessage(filesLimit) {
+    return "Maximum allowed number of files exceeded. Only ".concat(filesLimit, " allowed");
+  },
+  getFileAddedMessage: function getFileAddedMessage(fileName) {
+    return "File ".concat(fileName, " successfully added.");
+  },
+  getPreviewIcon: defaultGetPreviewIcon,
+  getFileRemovedMessage: function getFileRemovedMessage(fileName) {
+    return "File ".concat(fileName, " removed.");
+  },
+  getDropRejectMessage: function getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize) {
+    var message = "File ".concat(rejectedFile.name, " was rejected. ");
+
+    if (!acceptedFiles.includes(rejectedFile.type)) {
+      message += 'File type not supported. ';
+    }
+
+    if (rejectedFile.size > maxFileSize) {
+      message += "File is too big. Size limit is ".concat(convertBytesToMbsOrKbs(maxFileSize), ". ");
+    }
+
+    return message;
+  },
+  onPreviewClick: function onPreviewClick() {}
+};
+var FileObjectShape = PropTypes.shape({
+  file: PropTypes.object,
+  data: PropTypes.any
+});
+process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = {
+  /** A list of file types to accept.
+   * @see See [here](https://react-dropzone.js.org/#section-accepting-specific-file-types) for more details.
+   */
+  acceptedFiles: PropTypes.arrayOf(PropTypes.string),
+
+  /** Maximum number of files that can be loaded into the dropzone. */
+  filesLimit: PropTypes.number,
+
+  /** Icon to be displayed inside the dropzone area. */
+  Icon: PropTypes.elementType,
+
+  /** Currently loaded files. */
+  fileObjects: PropTypes.arrayOf(FileObjectShape),
+
+  /** Maximum file size (in bytes) that the dropzone will accept. */
+  maxFileSize: PropTypes.number,
+
+  /** Text inside the dropzone. */
+  dropzoneText: PropTypes.string,
+
+  /** Custom CSS class name for dropzone container. */
+  dropzoneClass: PropTypes.string,
+
+  /** Custom CSS class name for text inside the container. */
+  dropzoneParagraphClass: PropTypes.string,
+
+  /** Disable feedback effect when dropping rejected files. */
+  disableRejectionFeedback: PropTypes.bool,
+
+  /** Shows file name under the dropzone image. */
+  showFileNames: PropTypes.bool,
+
+  /** Uses deletable Material-UI Chip components to display file names. */
+  useChipsForPreview: PropTypes.bool,
+
+  /**
+   * Props to pass to the Material-UI Chip components.<br/>Requires `useChipsForPreview` prop to be `true`.
+   *
+   * @see See [Material-UI Chip](https://material-ui.com/api/chip/#props) for available values.
+   */
+  previewChipProps: PropTypes.object,
+
+  /**
+   * Custom CSS classNames for preview Grid components.<br/>
+   * Should be in the form {container: string, item: string, image: string}.
+   */
+  previewGridClasses: PropTypes.object,
+
+  /**
+   * Props to pass to the Material-UI Grid components.<br/>
+   * Should be in the form {container: GridProps, item: GridProps}.
+   *
+   * @see See [Material-UI Grid](https://material-ui.com/api/grid/#props) for available GridProps values.
+   */
+  previewGridProps: PropTypes.object,
+
+  /** The label for the file preview section. */
+  previewText: PropTypes.string,
+
+  /** Determines whether previews are shown inside the dropzone area, below, or not at all. Acceptable values are 'inside', 'below', 'none'. */
+  previewType: PropTypes.oneOf(['inside', 'below', 'none']),
+
+  /**
+   * Shows styled Material-UI Snackbar when files are dropped, deleted or rejected.
+   *
+   * - can be a boolean ("global" `true` or `false` for all alerts).
+   * - can be an array, with values 'error', 'info', 'success' to select to view only certain alerts:
+   *  - showAlerts={['error']} for only errors.
+   *  - showAlerts={['error', 'info']} for both errors and info.
+   *  - showAlerts={['error', 'success', 'info']} is same as showAlerts={true}.
+   *  - showAlerts={[]} is same as showAlerts={false}.
+   */
+  showAlerts: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.oneOf(['error', 'success', 'info']))]),
+
+  /**
+   * Props to pass to the Material-UI Snackbar components.<br/>Requires `showAlerts` prop to be `true`.
+   *
+   * @see See [Material-UI Snackbar](https://material-ui.com/api/snackbar/#props) for available values.
+   */
+  alertSnackbarProps: PropTypes.object,
+
+  /**
+   * Props to pass to the Dropzone component.
+   *
+   * @see See [Dropzone props](https://react-dropzone.js.org/#src) for available values.
+   */
+  dropzoneProps: PropTypes.object,
+
+  /**
+   * Attributes applied to the input element.
+   *
+   * @see See [MDN Input File attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Additional_attributes) for available values.
+   */
+  inputProps: PropTypes.object,
+
+  /**
+   * A function which determines which the number of columns to display in the preview list
+   *
+   * *Default*: Returns a sensible number of columns depending on the screen size (i.e. xs=1, sm=2, md=3, lg=4, xl=5) without exceeding the filesLimit (e.g. There would be no point displaying 4 columns if the filesLimit is 3)
+   *
+   * @param {string} width Width prop from useWidth, this will be one of ['xs','sm','md','lg','xl'] depending on the current screen size
+   * @param {number} filesLimit The `filesLimit` prop
+   * @param {number} currentNumberOfFiles The number of files in the `state.fileObjects`
+   */
+  getCols: PropTypes.func,
+
+  /**
+   * Get alert message to display when files limit is exceed.
+   *
+   * *Default*: "Maximum allowed number of files exceeded. Only ${filesLimit} allowed"
+   *
+   * @param {number} filesLimit The `filesLimit` currently set for the component.
+   */
+  getFileLimitExceedMessage: PropTypes.func,
+
+  /**
+   * Get alert message to display when a new file is added.
+   *
+   * *Default*: "File ${fileName} successfully added."
+   *
+   * @param {string} fileName The newly added file name.
+   */
+  getFileAddedMessage: PropTypes.func,
+
+  /**
+   * Get alert message to display when a file is removed.
+   *
+   * *Default*: "File ${fileName} removed."
+   *
+   * @param {string} fileName The name of the removed file.
+   */
+  getFileRemovedMessage: PropTypes.func,
+
+  /**
+   * Get alert message to display when a file is rejected onDrop.
+   *
+   * *Default*: "File ${rejectedFile.name} was rejected."
+   *
+   * @param {Object} rejectedFile The file that got rejected
+   * @param {string[]} acceptedFiles The `acceptedFiles` prop currently set for the component
+   * @param {number} maxFileSize The `maxFileSize` prop currently set for the component
+   */
+  getDropRejectMessage: PropTypes.func,
+
+  /**
+   * A function which determines which icon to display for a file preview.
+   *
+   * *Default*: If its an image then displays a preview the image, otherwise it will display an attachment icon
+   *
+   * @param {FileObject} objectFile The file which the preview will belong to
+   * @param {Object} classes The classes for the file preview icon, in the default case we use the 'image' className.
+   */
+  getPreviewIcon: PropTypes.func,
+
+  /**
+   * Fired when new files are added to dropzone.
+   *
+   * @param {FileObject[]} newFiles The new files added to the dropzone.
+   */
+  onAdd: PropTypes.func,
+
+  /**
+   * Fired when an alert is triggered.
+   *
+   * @param {string} message Alert message.
+   * @param {string} variant One of "error", "info", "success".
+   */
+  onAlert: PropTypes.func,
+
+  /**
+   * Fired when a file is deleted from the previews panel.
+   *
+   * @param {FileObject} deletedFileObject The file that was removed.
+   * @param {number} index The index of the removed file object.
+   */
+  onDelete: PropTypes.func,
+
+  /**
+   * Fired when the user drops files into the dropzone.
+   *
+   * @param {File[]} droppedFiles All the files dropped into the dropzone.
+   * @param {Event} event The react-dropzone drop event.
+   */
+  onDrop: PropTypes.func,
+
+  /**
+   * Fired when a file is rejected because of wrong file type, size or goes beyond the filesLimit.
+   *
+   * @param {File[]} rejectedFiles All the rejected files.
+   * @param {Event} event The react-dropzone drop event.
+   */
+  onDropRejected: PropTypes.func,
+
+  /**  
+   * Fired when the user click que preview icon in the image. If this props was not informed, the preview icon doesn't appears.
+   *
+   * @param {File} clickedFile File was clicked.
+   * @param {number} index The index of clicked file object.
+   */
+  onPreviewClick: PropTypes.func
+} : void 0;
 
 var _excluded$2 = ["clearOnUnmount", "initialFiles", "onChange", "onDelete", "filesLimit"];
 /**
@@ -1140,7 +1173,7 @@ process.env.NODE_ENV !== "production" ? DropzoneArea.propTypes = _extends({}, Dr
 
   /** List containing File objects or URL strings.<br/>
    * **Note:** Please take care of CORS.
-  */
+   */
   initialFiles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.any])),
 
   /** Maximum number of files that can be loaded into the dropzone. */
@@ -1348,15 +1381,15 @@ process.env.NODE_ENV !== "production" ? DropzoneDialog.propTypes = _extends({}, 
 
   /** List containing File objects or URL strings.<br/>
    * **Note:** Please take care of CORS.
-  */
+   */
   initialFiles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.any])),
 
   /**
-  * Fired when the user clicks the Submit button.
-  *
-  * @param {File[]} files All the files currently inside the Dropzone.
-  * @param {SyntheticEvent} event The react `SyntheticEvent`.
-  */
+   * Fired when the user clicks the Submit button.
+   *
+   * @param {File[]} files All the files currently inside the Dropzone.
+   * @param {SyntheticEvent} event The react `SyntheticEvent`.
+   */
   onSave: PropTypes.func
 }) : void 0;
 
