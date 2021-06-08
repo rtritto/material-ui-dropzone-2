@@ -2,6 +2,7 @@ import { ChipProps } from "@material-ui/core/Chip";
 import { DialogProps } from "@material-ui/core/Dialog";
 import { GridListProps } from "@material-ui/core/GridListProps";
 import { GridListTileBarProps } from "@material-ui/core/GridListTileBarProps";
+import { GridListTileProps } from "@material-ui/core/GridListTileProps";
 import { SnackbarProps } from "@material-ui/core/Snackbar";
 import * as React from "react";
 import { DropEvent, DropzoneProps } from "react-dropzone";
