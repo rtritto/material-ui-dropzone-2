@@ -10,7 +10,7 @@ These steps will guide you through contributing to this project:
 - Clone it and install dependencies
 
   ```shell
-    git clone https://github.com/[YOUR-USERNAME]/material-ui-dropzone
+    git clone https://github.com/[YOUR-USERNAME]/material-ui-dropzone-2
 
     yarn install
   ```

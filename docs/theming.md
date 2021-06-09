@@ -1,4 +1,4 @@
-`material-ui-dropzone` components support theming through [`MaterialUI Theme`](https://material-ui.com/customization/theming/).
+`material-ui-dropzone-2` components support theming through [`MaterialUI Theme`](https://material-ui.com/customization/theming/).
 
 #### DropzoneArea
 

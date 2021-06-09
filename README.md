@@ -1,4 +1,4 @@
-# material-ui-dropzone
+# material-ui-dropzone-2
 
 > Material-UI-dropzone is a [React](https://github.com/facebook/react) component using [Material-UI](https://github.com/mui-org/material-ui) and is based on the excellent [react-dropzone](https://github.com/react-dropzone/react-dropzone) library.
 
@@ -7,7 +7,7 @@
 
 [![Rebuild Dist Workflow Status](https://img.shields.io/github/workflow/status/yuvaleros/material-ui-dropzone/Rebuild%20Dist?label=build)](https://github.com/Yuvaleros/material-ui-dropzone/actions?query=workflow%3A%22Rebuild+Dist%22) [![Update Docs Workflow Status](https://img.shields.io/github/workflow/status/yuvaleros/material-ui-dropzone/Update%20Docs?label=docs)](https://github.com/Yuvaleros/material-ui-dropzone/actions?query=workflow%3A%22Update+Docs%22)
 
-[![npm package](https://img.shields.io/npm/v/material-ui-dropzone)](https://www.npmjs.com/package/material-ui-dropzone) [![npm downloads](https://img.shields.io/npm/dm/material-ui-dropzone.svg)](https://www.npmjs.com/package/material-ui-dropzone)
+[![npm package](https://img.shields.io/npm/v/material-ui-dropzone-2)](https://www.npmjs.com/package/material-ui-dropzone-2) [![npm downloads](https://img.shields.io/npm/dm/material-ui-dropzone.svg)](https://www.npmjs.com/package/material-ui-dropzone-2)
 
 This components provide either a file-upload dropzone or a file-upload dropzone inside of a dialog.
 
@@ -16,13 +16,13 @@ The file-upload dropzone features some snazzy "File Allowed/Not Allowed" effects
 ## Installation
 
 ```shell
-npm install --save material-ui-dropzone
+npm install --save material-ui-dropzone-2
 ```
 
 or
 
 ```shell
-yarn add material-ui-dropzone
+yarn add material-ui-dropzone-2
 ```
 
 ## Support
@@ -31,6 +31,7 @@ yarn add material-ui-dropzone
 
 | version | React            | Material-UI    |
 | ------- | ---------------- | -------------- |
+| `5.x`   | `17.x`           | `5.x`          |
 | `4.x`   | `16.8+`          | `4.x`          |
 | `2.x`   | `15.x` or `16.x` | `3.x` or `4.x` |
 

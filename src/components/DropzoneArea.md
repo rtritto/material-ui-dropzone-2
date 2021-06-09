@@ -1,7 +1,7 @@
 ### Import
 
 ```jsx static
-import { DropzoneArea } from 'material-ui-dropzone';
+import { DropzoneArea } from 'material-ui-dropzone-2';
 ```
 
 ### Basic usage
@@ -91,7 +91,7 @@ const handlePreviewIcon = (fileObject, classes, isImage, titleBarTop) => {
       break;
     default:
       icon = <AttachFile {...iconProps} />;
-      break;      
+      break;
   }
 
   return <Grid container className={classes.iconWrapper} justify="center" >

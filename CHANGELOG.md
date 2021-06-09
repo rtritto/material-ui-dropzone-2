@@ -1,4 +1,4 @@
-# material-ui-dropzone
+# material-ui-dropzone-2
 
 Thanks to all contributers who improved **material-ui-dropzone** by opening an issue/PR.
 
