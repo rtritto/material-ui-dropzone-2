@@ -1,6 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import copy from 'rollup-plugin-cpy';
 import external from 'rollup-plugin-peer-deps-external';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
@@ -26,9 +26,10 @@ export default {
       includeDependencies: true,
     }),
     babel({
-      exclude: /node_modules/,
+      // exclude: /node_modules/
       // We are using @babel/plugin-transform-runtime
-      runtimeHelpers: true,
+      // runtimeHelpers: true // deprecated
+      babelHelpers: 'runtime' // Default: bundled
     }),
     resolve(),
     commonjs(),
