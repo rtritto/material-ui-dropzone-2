@@ -1,9 +1,13 @@
-import Grid from '@material-ui/core/Grid'
-import Snackbar from '@material-ui/core/Snackbar'
-import Typography from '@material-ui/core/Typography'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import AttachFileIcon from '@material-ui/icons/AttachFile'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+import {
+	Grid,
+	Typography,
+	Snackbar
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import {
+	AttachFile as AttachFileIcon,
+	CloudUpload as CloudUploadIcon
+} from '@material-ui/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'

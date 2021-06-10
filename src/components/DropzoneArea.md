@@ -66,7 +66,7 @@ Demonstration of how to customize the preview icon for:
 
 ```jsx
 import * as React from 'react'
-import Grid from '@material-ui/core/Grid'
+import { Grid } from '@material-ui/core'
 import { AttachFile, AudioTrack, Description, PictureAsPdf, Theaters } from '@material-ui/icons'
 import clsx from 'clsx'
 

@@ -1,11 +1,13 @@
-import Chip from '@material-ui/core/Chip'
-import Grid from '@material-ui/core/Grid'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
-import IconButton from '@material-ui/core/IconButton'
+import {
+	Chip,
+	Grid,
+	GridList,
+	GridListTile,
+	GridListTileBar,
+	IconButton
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import DeleteIcon from '@material-ui/icons/Delete'
+import { Delete as DeleteIcon } from '@material-ui/icons'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'

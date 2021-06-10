@@ -7,7 +7,7 @@ import { DropzoneDialog } from 'material-ui-dropzone-2'
 ### Basic usage
 
 ```jsx
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 
 const [open, setOpen] = React.useState(false)
 
