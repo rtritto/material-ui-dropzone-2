@@ -1,0 +1,13 @@
+bracketSpacing: true
+endOfLine: 'lf'
+jsxBracketSameLine: false
+printWidth: 80
+semi: false
+singleQuote: true
+tabWidth: 2
+trailingComma: 'none'
+useTabs: true
+overrides:
+  - files: '*.json'
+    options:
+      printWidth: 200

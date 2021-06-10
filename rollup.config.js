@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { babel } from '@rollup/plugin-babel'
 import copy from 'rollup-plugin-cpy'
 import external from 'rollup-plugin-peer-deps-external'
@@ -31,7 +31,7 @@ export default {
 			// runtimeHelpers: true // deprecated
 			babelHelpers: 'runtime' // Default: bundled
 		}),
-		resolve(),
+		nodeResolve(),
 		commonjs(),
 		copy({
 			files: ['src/index.d.ts'],

@@ -25,7 +25,7 @@
 		"dist"
 	],
 	"engines": {
-		"node": ">=8",
+		"node": ">=12",
 		"yarn": ">=2"
 	},
 	"scripts": {
@@ -65,8 +65,8 @@
 		"@material-ui/core": "^4.11.4",
 		"@material-ui/icons": "^4.11.2",
 		"@rollup/plugin-babel": "^5.3.0",
-		"@rollup/plugin-commonjs": "^15.0.0",
-		"@rollup/plugin-node-resolve": "^9.0.0",
+		"@rollup/plugin-commonjs": "^19.0.0",
+		"@rollup/plugin-node-resolve": "^13.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.1",
 		"@typescript-eslint/parser": "^4.26.1",
 		"@yarnpkg/pnpify": "^3.0.0-rc.6",
@@ -75,18 +75,18 @@
 		"babel-plugin-transform-dev-warning": "^0.1.1",
 		"babel-plugin-transform-react-remove-prop-types": "^0.4.24",
 		"eslint": "^7.28.0",
-		"eslint-config-prettier": "^6.11.0",
+		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-flowtype": "^5.7.2",
 		"eslint-plugin-import": "^2.23.4",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-react": "^7.24.0",
 		"eslint-plugin-react-hooks": "^4.2.0",
-		"gh-pages": "^1.2.0",
-		"husky": ">=4",
-		"lint-staged": ">=10",
+		"gh-pages": "^3.2.0",
+		"husky": "^6.0.0",
+		"lint-staged": "^11.0.0",
 		"prettier": "^2.3.1",
-		"pretty-quick": "^2.0.1",
+		"pretty-quick": "^3.1.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-styleguidist": "^11.1.7",
@@ -95,11 +95,6 @@
 		"rollup-plugin-peer-deps-external": "2.2.4",
 		"rollup-plugin-size-snapshot": "^0.12.0",
 		"typescript": "^4.3.2"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn lint:staged"
-		}
 	},
 	"lint-staged": {
 		"src/**/*.js": "eslint --cache --fix"
