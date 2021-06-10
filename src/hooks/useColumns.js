@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import useWidth from './useWidth';
+import useWidth from './useWidth'
 
 /**
  * Calculates the number of columns to use in the preview based on a function passed in
@@ -8,15 +8,20 @@ import useWidth from './useWidth';
  * screen changes
  */
 const useColumns = (getCols, filesLimit, numberOfFileObjects) => {
-  const [numberOfColumns, setCols] = useState(1);
-  const width = useWidth();
+	const [numberOfColumns, setCols] = useState(1)
+	const width = useWidth()
 
-  useEffect(() => {
-    const cols = getCols(width, filesLimit, numberOfFileObjects);
-    setCols(cols);
-  }, [filesLimit, getCols, numberOfFileObjects, width]);
+	useEffect(() => {
+		const cols = getCols(width, filesLimit, numberOfFileObjects)
+		setCols(cols)
+	}, [
+		filesLimit,
+		getCols,
+		numberOfFileObjects,
+		width
+	])
 
-  return numberOfColumns;
-};
+	return numberOfColumns
+}
 
-export default useColumns;
+export default useColumns

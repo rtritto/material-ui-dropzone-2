@@ -41,26 +41,26 @@
 ### Sample theme override
 
 ```jsx
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import DropzoneArea from '../src/components/DropzoneArea';
+import DropzoneArea from '../src/components/DropzoneArea'
 
 const theme = createMuiTheme({
-  overrides: {
-    MuiDropzoneSnackbar: {
-      errorAlert: {
-        backgroundColor: "#AFA",
-        color: "#000"
-      },
-      successAlert: {
-        backgroundColor: "#FAA",
-        color: "#000"
-      },
-    }
-  }
-});
+	overrides: {
+		MuiDropzoneSnackbar: {
+			errorAlert: {
+				backgroundColor: "#AFA",
+				color: "#000"
+			},
+			successAlert: {
+				backgroundColor: "#FAA",
+				color: "#000"
+			}
+		}
+	}
+})
 
 <MuiThemeProvider theme={theme}>
-  <DropzoneArea maxFileSize={1} />
+	<DropzoneArea maxFileSize={1} />
 </MuiThemeProvider>
 ```
