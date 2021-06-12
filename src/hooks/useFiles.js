@@ -14,36 +14,30 @@ const useFiles = ({
 }) => {
 	const [fileObjects, setFileObjects] = useState([])
 
-	const loadInitialFiles = useCallback(
-		async () => {
-			try {
-				const fileObjs = await Promise.all(
-					initialFiles.map(async (initialFile) => {
-						let file
-						if (typeof initialFile === 'string') {
-							file = await createFileFromUrl(initialFile)
-						} else {
-							file = initialFile
-						}
-						const data = await readFile(file)
+	const loadInitialFiles = useCallback(async () => {
+		try {
+			const fileObjs = await Promise.all(
+				initialFiles.map(async (initialFile) => {
+					let file
+					if (typeof initialFile === 'string') {
+						file = await createFileFromUrl(initialFile)
+					} else {
+						file = initialFile
+					}
+					const data = await readFile(file)
 
-						return {
-							file,
-							data
-						}
-					})
-				)
+					return {
+						file,
+						data
+					}
+				})
+			)
 
-				setFileObjects((prev) => [
-					...prev,
-					...fileObjs
-				])
-			} catch (err) {
-				console.log(err)
-			}
-		},
-		[initialFiles]
-	)
+			setFileObjects((prev) => [...prev, ...fileObjs])
+		} catch (err) {
+			console.log(err)
+		}
+	}, [initialFiles])
 
 	const handleAddFiles = useCallback(
 		(newFileObjects) => {
@@ -80,28 +74,22 @@ const useFiles = ({
 	const handleResetFiles = () => setFileObjects([])
 
 	// When the fileObjects change, fire the onChange method if it's defined
-	useEffect(
-		() => {
-			if (onChange) {
-				onChange(fileObjects.map((fileObject) => fileObject.file))
-			}
-		},
-		[fileObjects, onChange]
-	)
+	useEffect(() => {
+		if (onChange) {
+			onChange(fileObjects.map((fileObject) => fileObject.file))
+		}
+	}, [fileObjects, onChange])
 
 	// Initialize the files when the hook is loaded
-	useEffect(
-		() => {
-			loadInitialFiles()
+	useEffect(() => {
+		loadInitialFiles()
 
-			return () => {
-				if (clearOnUnmount) {
-					setFileObjects([])
-				}
+		return () => {
+			if (clearOnUnmount) {
+				setFileObjects([])
 			}
-		},
-		[clearOnUnmount, loadInitialFiles]
-	)
+		}
+	}, [clearOnUnmount, loadInitialFiles])
 
 	return {
 		fileObjects,

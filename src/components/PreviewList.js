@@ -86,7 +86,7 @@ const PreviewList = ({
 								onDelete={handleRemove(i)}
 							/>
 						</Grid>
-					);
+					)
 				})}
 			</Grid>
 		)

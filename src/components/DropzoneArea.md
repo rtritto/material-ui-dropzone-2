@@ -96,7 +96,7 @@ const handlePreviewIcon = (fileObject, classes, isImage, titleBarTop) => {
 			break
 	}
 
-	return <Grid container className={classes.iconWrapper} justify='center' >
+	return <Grid container className={classes.iconWrapper} justify="center" >
 		{icon}
 	</Grid>
 }
@@ -132,7 +132,9 @@ const file = new File(['foo'], 'foo.txt', {
 		gridListTitleBar : {
 			titlePosition : 'top', // mui default is bottom
 			actionPosition: 'left', // mui default is right
-			style: {backgroundColor: 'rgba(248, 132, 132, 0.63)'}
+			style: {
+				backgroundColor: 'rgba(248, 132, 132, 0.63)'
+			}
 		}
 	}}
 	onChange={(files) => { console.log('Files:', files) }}

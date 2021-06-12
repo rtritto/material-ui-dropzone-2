@@ -1,7 +1,4 @@
-import {
-	IconButton,
-	SnackbarContent
-} from '@material-ui/core'
+import { IconButton, SnackbarContent } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
 	CheckCircle as CheckCircleIcon,
@@ -21,32 +18,33 @@ const variantIcon = {
 	info: InfoIcon
 }
 
-const useStyles = makeStyles((theme) => ({
-	successAlert: {
-		backgroundColor: theme.palette.success.main
-	},
-	errorAlert: {
-		backgroundColor: theme.palette.error.main
-	},
-	infoAlert: {
-		backgroundColor: theme.palette.info.main
-	},
-	warningAlert: {
-		backgroundColor: theme.palette.warning.main
-	},
-	message: {
-		display: 'flex',
-		alignItems: 'center',
-		'& > svg': {
-			marginRight: theme.spacing(1)
-		}
-	},
-	icon: {
-		fontSize: 20,
-		opacity: 0.9
-	},
-	closeButton: {}
-}),
+const useStyles = makeStyles(
+	(theme) => ({
+		successAlert: {
+			backgroundColor: theme.palette.success.main
+		},
+		errorAlert: {
+			backgroundColor: theme.palette.error.main
+		},
+		infoAlert: {
+			backgroundColor: theme.palette.info.main
+		},
+		warningAlert: {
+			backgroundColor: theme.palette.warning.main
+		},
+		message: {
+			display: 'flex',
+			alignItems: 'center',
+			'& > svg': {
+				marginRight: theme.spacing(1)
+			}
+		},
+		icon: {
+			fontSize: 20,
+			opacity: 0.9
+		},
+		closeButton: {}
+	}),
 	{ name: 'MuiDropzoneSnackbar' }
 )
 

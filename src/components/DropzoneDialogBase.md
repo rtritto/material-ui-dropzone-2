@@ -38,8 +38,8 @@ const dialogTitle = () => (
 		dialogTitle={dialogTitle()}
 		acceptedFiles={['image/*']}
 		fileObjects={fileObjects}
-		cancelButtonText={"cancel"}
-		submitButtonText={"submit"}
+		cancelButtonText="cancel"
+		submitButtonText="submit"
 		maxFileSize={5000000}
 		open={open}
 		onAdd={newFileObjs => {

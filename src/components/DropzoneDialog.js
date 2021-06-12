@@ -22,18 +22,14 @@ const DropzoneDialog = ({
 	onChange,
 	...other
 }) => {
-	const {
-		handleDeleteFile,
-		handleAddFiles,
-		fileObjects,
-		handleResetFiles,
-	} = useFiles({
-		onChange,
-		clearOnUnmount,
-		initialFiles,
-		filesLimit,
-		onDelete
-	})
+	const { handleDeleteFile, handleAddFiles, fileObjects, handleResetFiles } =
+		useFiles({
+			onChange,
+			clearOnUnmount,
+			initialFiles,
+			filesLimit,
+			onDelete
+		})
 
 	const handleClose = (evt) => {
 		if (onClose) {
@@ -86,10 +82,7 @@ DropzoneDialog.propTypes = {
 	 * **Note:** Please take care of CORS.
 	 */
 	initialFiles: PropTypes.arrayOf(
-		PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.any
-		])
+		PropTypes.oneOfType([PropTypes.string, PropTypes.any])
 	),
 	/**
 	 * Fired when the user clicks the Submit button.

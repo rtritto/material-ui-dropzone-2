@@ -26,7 +26,7 @@ const DropzoneArea = ({
 		clearOnUnmount,
 		initialFiles,
 		filesLimit,
-		onDelete,
+		onDelete
 	})
 
 	return (
@@ -53,10 +53,7 @@ DropzoneArea.propTypes = {
 	 * **Note:** Please take care of CORS.
 	 */
 	initialFiles: PropTypes.arrayOf(
-		PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.any
-		])
+		PropTypes.oneOfType([PropTypes.string, PropTypes.any])
 	),
 	/** Maximum number of files that can be loaded into the dropzone. */
 	filesLimit: PropTypes.number,

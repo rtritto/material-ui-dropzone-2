@@ -14,12 +14,7 @@ const useColumns = (getCols, filesLimit, numberOfFileObjects) => {
 	useEffect(() => {
 		const cols = getCols(width, filesLimit, numberOfFileObjects)
 		setCols(cols)
-	}, [
-		filesLimit,
-		getCols,
-		numberOfFileObjects,
-		width
-	])
+	}, [filesLimit, getCols, numberOfFileObjects, width])
 
 	return numberOfColumns
 }

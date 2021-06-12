@@ -8,23 +8,25 @@ import { DropzoneAreaBase } from 'material-ui-dropzone-2'
 
 ```jsx
 <DropzoneAreaBase
-	onAdd={(fileObjs) => console.log('Added Files:', fileObjs)}
-	onAlert={(message, variant) => console.log(`${variant}: ${message}`)}
-	onDelete={(fileObj) => console.log('Removed File:', fileObj)}
-	onPreviewClick={(fileObject) => console.log('onPreviewClick:', fileObject)}
+	onAdd={(fileObjs) => { console.log('Added Files:', fileObjs) }}
+	onAlert={(message, variant) => { console.log(`${variant}: ${message}`) }}
+	onDelete={(fileObj) => { console.log('Removed File:', fileObj) }}
+	onPreviewClick={(fileObject) => {
+		console.log('onPreviewClick:', fileObject)
+	}}
 />
 ```
 
 ### Accept only images
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from 'react'
 const [fileObjects, setFileObjects] = useState([])
 
 <DropzoneAreaBase
 	fileObjects={fileObjects}
 	acceptedFiles={['image/*']}
-	dropzoneText={'Drag and drop an image here or click'}
+	dropzoneText="Drag and drop an image here or click"
 	onChange={(files) => { console.log('Files:', files) }}
 	onAlert={(message, variant) => { console.log(`${variant}: ${message}`) }}
 	onAdd={(newFileObjs) => {
@@ -44,10 +46,12 @@ import { AttachFile } from '@material-ui/icons'
 
 <DropzoneAreaBase
 	Icon={AttachFile}
-	dropzoneText={'Drag and drop an image here or click'}
-	onChange={(files) => console.log('Files:', files)}
-	onAlert={(message, variant) => console.log(`${variant}: ${message}`)}
-	onPreviewClick={(fileObject) => console.log('onPreviewClick:', fileObject)}
+	dropzoneText="Drag and drop an image here or click"
+	onChange={(files) => { console.log('Files:', files) }}
+	onAlert={(message, variant) => { console.log(`${variant}: ${message}`) }}
+	onPreviewClick={(fileObject) => {
+		console.log('onPreviewClick:', fileObject)
+	}}
 />
 ```
 
@@ -61,14 +65,14 @@ Demonstration of how to customize the preview icon for:
 - Word Documents
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import {
 	AttachFile,
 	AudioTrack,
 	Description,
 	PictureAsPdf,
 	Theaters,
-} from "@material-ui/icons"
+} from '@material-ui/icons'
 
 const handlePreviewIcon = (
 	fileObject,
@@ -113,9 +117,7 @@ const [fileObjects, setFileObjects] = useState([])
 		console.log('onAdd', newFileObjs)
 		setFileObjects([].concat(fileObjects, newFileObjs))
 	}}
-	onDelete={(deleteFileObj) => {
-		console.log('onDelete', deleteFileObj)
-	}}
+	onDelete={(deleteFileObj) => { console.log('onDelete', deleteFileObj) }}
 	getPreviewIcon={handlePreviewIcon}
 	onPreviewClick={(fileObject) => {
 		console.log('onPreviewClick:', fileObject)

@@ -1,8 +1,4 @@
-import {
-	Grid,
-	Typography,
-	Snackbar
-} from '@material-ui/core'
+import { Grid, Typography, Snackbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
 	AttachFile as AttachFileIcon,
@@ -74,7 +70,7 @@ const useStyles = makeStyles(
 			width: 51,
 			height: 51,
 			color: palette.text.primary
-		},
+		}
 	}),
 	{ name: 'MuiDropzoneArea' }
 )
@@ -126,7 +122,7 @@ const defaultGetPreviewIcon = (fileObject, classes, isImage, titleBarTop) => {
 		<Grid container className={classes.iconWrapper} justify="center">
 			<AttachFileIcon
 				className={clsx(classes.fileIcon, {
-					[classes.fileIconBottom]: titleBarTop,
+					[classes.fileIconBottom]: titleBarTop
 				})}
 			/>
 		</Grid>
@@ -233,11 +229,7 @@ const DropzoneAreaBase = ({
 		(rejectedFiles, evt) => {
 			let message = ''
 			rejectedFiles.forEach((rejectedFile) => {
-				message = getDropRejectMessage(
-					rejectedFile,
-					acceptedFiles,
-					maxFileSize
-				)
+				message = getDropRejectMessage(rejectedFile, acceptedFiles, maxFileSize)
 			})
 
 			if (onDropRejected) {
@@ -269,12 +261,7 @@ const DropzoneAreaBase = ({
 			const message = getFileRemovedMessage(removedFileObj.file.name)
 			sendMessage(message, 'info')
 		},
-		[
-			fileObjects,
-			onDelete,
-			getFileRemovedMessage,
-			sendMessage
-		]
+		[fileObjects, onDelete, getFileRemovedMessage, sendMessage]
 	)
 
 	const handlePreviewClick = useCallback(
@@ -286,20 +273,17 @@ const DropzoneAreaBase = ({
 
 			onPreviewClick(previewedFileObj, fileIndex)
 		},
-		[
-			fileObjects,
-			onPreviewClick
-		]
+		[fileObjects, onPreviewClick]
 	)
 
 	const acceptFiles = acceptedFiles?.join(',')
 	const isMultiple = filesLimit > 1
 	const someFiles = fileObjects.length > 0
 
-	const alertsEnabled = (typeof showAlerts === 'boolean' && showAlerts)
-		|| Array.isArray(showAlerts)
-	const isAlertOpen = snackbarOpen
-		&& shouldShowAlert(showAlerts, snackbarVariant)
+	const alertsEnabled =
+		(typeof showAlerts === 'boolean' && showAlerts) || Array.isArray(showAlerts)
+	const isAlertOpen =
+		snackbarOpen && shouldShowAlert(showAlerts, snackbarVariant)
 
 	return (
 		<>
@@ -318,10 +302,8 @@ const DropzoneAreaBase = ({
 								classes.root,
 								dropzoneClass,
 								isDragActive && classes.active,
-								!disableRejectionFeedback
-								&& isDragReject
-								&& classes.invalid
-							),
+								!disableRejectionFeedback && isDragReject && classes.invalid
+							)
 						})}
 					>
 						<input {...getInputProps(inputProps)} />
@@ -336,10 +318,7 @@ const DropzoneAreaBase = ({
 							<Typography
 								variant="h5"
 								component="p"
-								className={clsx(
-									classes.text,
-									dropzoneParagraphClass
-								)}
+								className={clsx(classes.text, dropzoneParagraphClass)}
 							>
 								{dropzoneText}
 							</Typography>
@@ -431,7 +410,7 @@ DropzoneAreaBase.defaultProps = {
 	alertSnackbarProps: {
 		anchorOrigin: {
 			horizontal: 'left',
-			vertical: 'bottom',
+			vertical: 'bottom'
 		},
 		autoHideDuration: 6000
 	},
@@ -448,13 +427,13 @@ DropzoneAreaBase.defaultProps = {
 		}
 		if (rejectedFile.size > maxFileSize) {
 			message += `File is too big. Size limit is ${convertBytesToMbsOrKbs(
-				maxFileSize,
+				maxFileSize
 			)}. `
 		}
 
 		return message
 	},
-	onPreviewClick: () => { }
+	onPreviewClick: () => {}
 }
 
 export const FileObjectShape = PropTypes.shape({
@@ -628,7 +607,7 @@ DropzoneAreaBase.propTypes = {
 	 * @param {Event} event The react-dropzone drop event.
 	 */
 	onDropRejected: PropTypes.func,
-	/**  
+	/**
 	 * Fired when the user click que preview icon in the image. If this props was not informed, the preview icon doesn't appears.
 	 *
 	 * @param {File} clickedFile File was clicked.

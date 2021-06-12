@@ -25,12 +25,9 @@ const useSnackbar = (onAlert) => {
 		[onAlert]
 	)
 
-	const handleCloseSnackbar = useCallback(
-		() => {
-			setState((prev) => ({ ...prev, open: false }))
-		},
-		[]
-	)
+	const handleCloseSnackbar = useCallback(() => {
+		setState((prev) => ({ ...prev, open: false }))
+	}, [])
 
 	return {
 		handleCloseSnackbar,
