@@ -313,6 +313,7 @@ var useWidth = function useWidth() {
   var theme = styles.useTheme();
   var keys = [].concat(theme.breakpoints.keys).reverse();
   return keys.reduce(function (output, key) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     var matches = core.useMediaQuery(theme.breakpoints.up(key));
     return !output && matches ? key : output;
   }, null) || 'xs';

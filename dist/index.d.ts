@@ -9,8 +9,6 @@ import {
 import * as React from 'react'
 import { DropEvent, DropzoneProps } from 'react-dropzone'
 
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-
 export interface FileObject {
 	readonly file: File
 	readonly data: string | ArrayBuffer | null
