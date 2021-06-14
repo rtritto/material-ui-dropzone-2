@@ -356,6 +356,17 @@ var useStyles$2 = styles.makeStyles(function (_ref) {
       height: '100%',
       backgroundColor: '#f2f2f2'
     },
+    imageContainer: {
+      position: 'relative',
+      zIndex: 10,
+      textAlign: 'center',
+      '&:hover $image': {
+        opacity: 0.3
+      },
+      '&:hover $removeButton': {
+        opacity: 1
+      }
+    },
     fileIcon: {
       flexGrow: 1,
       height: '50%',
@@ -1123,7 +1134,7 @@ process.env.NODE_ENV !== "production" ? DropzoneAreaBase.propTypes = {
    */
   onDropRejected: PropTypes__default['default'].func,
 
-  /**  
+  /**
    * Fired when the user click que preview icon in the image. If this props was not informed, the preview icon doesn't appears.
    *
    * @param {File} clickedFile File was clicked.
