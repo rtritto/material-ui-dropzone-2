@@ -32,6 +32,17 @@ const useStyles = makeStyles(
 			height: '100%',
 			backgroundColor: '#f2f2f2'
 		},
+		imageContainer: {
+			position: 'relative',
+			zIndex: 10,
+			textAlign: 'center',
+			'&:hover $image': {
+				opacity: 0.3
+			},
+			'&:hover $removeButton': {
+				opacity: 1
+			}
+		},
 		fileIcon: {
 			flexGrow: 1,
 			height: '50%',
