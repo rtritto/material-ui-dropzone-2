@@ -71,20 +71,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.14.5":
-  version: 7.14.5
-  resolution: "@babel/eslint-parser@npm:7.14.5"
-  dependencies:
-    eslint-scope: ^5.1.1
-    eslint-visitor-keys: ^2.1.0
-    semver: ^6.3.0
-  peerDependencies:
-    "@babel/core": ">=7.11.0"
-    eslint: ">=7.5.0"
-  checksum: 2f24858075b84ddc346cedd5638c499f56550ba7add6be205557b9c6fb519a1ee7af7669035099626160ac4a5a1243d583d955ce2409075a373e8a6bc2d75df3
-  languageName: node
-  linkType: hard
-
 "@babel/generator@npm:^7.12.11, @babel/generator@npm:^7.14.5, @babel/generator@npm:^7.6.2":
   version: 7.14.5
   resolution: "@babel/generator@npm:7.14.5"
@@ -736,6 +722,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-syntax-typescript@npm:^7.14.5":
+  version: 7.14.5
+  resolution: "@babel/plugin-syntax-typescript@npm:7.14.5"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.14.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 1b26952c0fa586460c8be3422e755fcd28a0cbddf5fb5647ade091facddc7a314b0320cb7a63072f32fd63702332ec837dc0e2b21a111c427c21d243596da180
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-arrow-functions@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-transform-arrow-functions@npm:7.14.5"
@@ -977,17 +974,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-object-assign@npm:^7.14.5":
-  version: 7.14.5
-  resolution: "@babel/plugin-transform-object-assign@npm:7.14.5"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.14.5
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 79585bab6e675adbbfa19793ef3ccf87e298bf6123dab92ecc6d7ab7f396f32c5e397216bd43dbb0624becf6aff4b0bb93d4f2116f4a3a37c0d4d89f28ee9005
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-object-super@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-transform-object-super@npm:7.14.5"
@@ -1176,6 +1162,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-typescript@npm:^7.14.5":
+  version: 7.14.5
+  resolution: "@babel/plugin-transform-typescript@npm:7.14.5"
+  dependencies:
+    "@babel/helper-create-class-features-plugin": ^7.14.5
+    "@babel/helper-plugin-utils": ^7.14.5
+    "@babel/plugin-syntax-typescript": ^7.14.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 847d24b7839030e923263ff3263356e9243fc73120b9d963ffd7ed5860b935a33ce9009adc200f46a229234f5054ceb3cdfb4651bb3458ce3e59b756d28a34cc
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-unicode-escapes@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-transform-unicode-escapes@npm:7.14.5"
@@ -1310,6 +1309,19 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 58a96aef0a58c3c46548451ce9457b2fea7e06ac619c74ee71876700ec6ff6f8e021d71347dd1f4dc5ce558a4f96498ae5679319bbe86dd38ae00ca7b701a29e
+  languageName: node
+  linkType: hard
+
+"@babel/preset-typescript@npm:^7.14.5":
+  version: 7.14.5
+  resolution: "@babel/preset-typescript@npm:7.14.5"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.14.5
+    "@babel/helper-validator-option": ^7.14.5
+    "@babel/plugin-transform-typescript": ^7.14.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: d2fdf3d875a155a97b04cb2799c001cce41de001fe16091657f636eaa56d789715a6fe768fa63222d9046c71d1975e4c165be74b71a93358e0ce376bf0a297e4
   languageName: node
   linkType: hard
 
@@ -5319,7 +5331,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-visitor-keys@npm:^2.0.0, eslint-visitor-keys@npm:^2.1.0":
+"eslint-visitor-keys@npm:^2.0.0":
   version: 2.1.0
   resolution: "eslint-visitor-keys@npm:2.1.0"
   checksum: 75eaae9006f5bcb9d1e09641719b840b83c4758f5f25bc06a0e94918d78658d0f19691bdc2e3b100604d0fe2d1eb94a2aab287ba24ad2f02f87cacdccb86c2e4
@@ -8232,14 +8244,13 @@ fsevents@~2.3.1:
   resolution: "material-ui-dropzone-2@workspace:."
   dependencies:
     "@babel/core": ^7.14.5
-    "@babel/eslint-parser": ^7.14.5
     "@babel/plugin-proposal-class-properties": ^7.14.5
     "@babel/plugin-proposal-object-rest-spread": ^7.14.5
-    "@babel/plugin-transform-object-assign": ^7.14.5
     "@babel/plugin-transform-react-constant-elements": ^7.14.5
     "@babel/plugin-transform-runtime": ^7.14.5
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
+    "@babel/preset-typescript": ^7.14.5
     "@babel/runtime": ^7.14.5
     "@material-ui/core": ^4.11.4
     "@material-ui/icons": ^4.11.2
@@ -8273,7 +8284,7 @@ fsevents@~2.3.1:
     react-dom: ^17.0.2
     react-dropzone: ^10.2.2
     react-styleguidist: ^11.1.7
-    rollup: ^2.51.1
+    rollup: ^2.51.2
     rollup-plugin-cpy: ^2.0.1
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-size-snapshot: ^0.12.0
@@ -10785,9 +10796,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.51.1":
-  version: 2.51.1
-  resolution: "rollup@npm:2.51.1"
+"rollup@npm:^2.51.2":
+  version: 2.51.2
+  resolution: "rollup@npm:2.51.2"
   dependencies:
     fsevents: ~2.3.1
   dependenciesMeta:
@@ -10795,7 +10806,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 84aaa1bdc63d45613ddf8ddf9ca1bff2262f26bc014e7a0d69696a3ede88af45b2fba16e079421a8683c88f842a852a68fde13ada2e4d765831d19759f3265e0
+  checksum: adad3fa3993c5843cdfdd9d6e370a5780182816175c154a3bfb437f01ca7838b2725c2b3030eb3ba3b1002f0ce77f091be78bbfc4aef4b75ddd83302138a19c6
   languageName: node
   linkType: hard
 

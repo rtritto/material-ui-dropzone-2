@@ -7,7 +7,8 @@ module.exports = {
 				modules: false
 			}
 		],
-		'@babel/preset-react'
+		'@babel/preset-react',
+		'@babel/preset-typescript'
 	],
 	plugins: [
 		'babel-plugin-optimize-clsx',
@@ -25,7 +26,7 @@ module.exports = {
 		],
 		'@babel/plugin-transform-runtime',
 		// for IE 11 support
-		'@babel/plugin-transform-object-assign',
+		// '@babel/plugin-transform-object-assign',
 		// material-ui 'productionPlugins'
 		'@babel/plugin-transform-react-constant-elements',
 		'babel-plugin-transform-dev-warning',
